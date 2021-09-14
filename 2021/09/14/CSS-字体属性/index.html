@@ -324,7 +324,7 @@
         <!--套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>CSS-字体属性-学习笔记<br>字体属性：<br>    · 字体系列<br>    · 字体大小<br>    · 字体粗细<br>    · 文字样式（如斜体等）<br>    · 总结</p>
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>CSS-字体属性-学习笔记<br>字体属性：<br>    · 字体系列<br>    · 字体大小<br>    · 字体粗细<br>    · 文字样式（如斜体等）<br>    · 字体复合属性<br>    · 总结</p>
 <hr>
 <p><br><br><br></p>
 <h1 id="·-字体系列"><a href="#·-字体系列" class="headerlink" title="· 字体系列"></a>· 字体系列</h1><p>CSS 使用 font-family 属性定义字体系列<br>用法：</p>
@@ -403,6 +403,20 @@ h2 &#123;
 
 <hr>
 <p><br><br><br></p>
+<h1 id="·-字体复合属性"><a href="#·-字体复合属性" class="headerlink" title="· 字体复合属性"></a>· 字体复合属性</h1><p>CSS 使用 font-style 属性设置文本的风格<br>用法：</p>
+<pre><code>.div &#123;
+    /* 复合属性：简写的方式 */
+    /* font: font-style font-weight font-size/line-height font-family */
+
+    font: italic 700 16px &quot;Microsoft YaHei&quot;
+&#125;
+</code></pre>
+<br>
+
+<strong>
+
+<p>· 使用 font 属性时，必须按上面语法格式中的顺序书写，<font color="#FF0000">不能更换顺序</font>， 并且各个属性间以<font color="#FF0000">空格</font>隔开<tr><br>· 不需要设置的属性可以省略（取默认值），但<font color="#FF0000">必须保留 font-size 和 font-family 属性</font>否则 font 属性 将不起作用</tr><tr></tr></p>
+</strong>
 
         </div>
 
@@ -555,7 +569,7 @@ gitalk.render('gitalk-container')
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -567,10 +581,10 @@ gitalk.render('gitalk-container')
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
-            // PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',

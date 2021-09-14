@@ -6,7 +6,7 @@
   <!-- <meta name="baidu-site-verification" content="LukfTcyXmC" /> -->
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Category: 技术栈 | Panzer_Jack 的 博客</title>
+  <title itemprop="name">CSS 基础选择器 | Panzer_Jack 的 博客</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Panzer-Jack/cdn/BlogImg/Panzer_Jack.jpg">
   
@@ -262,119 +262,258 @@
 
       
       <!-- body -->
-      
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/cungudafa/cdn/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
-<div class="pattern-center ">
-  <div class="pattern-attachment-img">
-    <img data-src="https://cdn.jsdelivr.net/gh/Panzer-Jack/cdn/BlogImg/header_coding.jpg" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
-  </div>
-  <header class="pattern-header ">
-    <h1 class="cat-title">技术栈</h1>
-    <span class="cat-des">
-      <p>Geek – Only for Love</p>
-    </span>
-    <span class="post-meta-item-icon">
-      <i class="iconfont icon-attention"></i>
-    </span>
-    <span class="post-meta-item-text">本页共<span id="busuanzi_value_page_pv"> </span>次阅读
-    </span>
-  </header>
-</div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
-      
-    <!-- 置顶文章 -->
-    
-      
-    
-      
-    
-    <!-- 首页默认取最最新文章集 -->
-    
-      <!-- 其余文章 -->
-      
-        <article class="post post-list" itemscope="" itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/09/14/CSS-%E5%9F%BA%E7%A1%80%E9%80%89%E6%8B%A9%E5%99%A8/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
+      <article id="post-1"
+        class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content">  -->
+        <!--套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>CSS-基础选择器-学习笔记<br>基础选择器分为 4 种：<br>    · 标签选择器<br>    · 类选择器<br>    · id选择器<br>    · 通配符选择器</p>
+<hr>
+<p><br><br><br></p>
+<h1 id="·-标签选择器"><a href="#·-标签选择器" class="headerlink" title="· 标签选择器"></a>· 标签选择器</h1><p>作用：可以选出所有相同的标签，例如 p, h1, h2 ….<br>特点：不能差异化选择，一次性全部选中所选的标签<br>使用情况：较多<br>用法：</p>
+<pre><code>&lt;head&gt;
+    &lt;style&gt;
+        /* 标签选择器 : 协商标签名 */
+        p &#123;
+            color: rgb(0, 255, 64);
+            /* 字体大小 */
+            font-size: 50px;
+            text-align: center;
+        &#125;
+        div &#123;
+            color: red;
+            font-size: 30px;
+            text-align: center;
+        &#125;
+    &lt;/style&gt;
+&lt;/head&gt;
+
+
+&lt;body&gt;
+    &lt;p&gt;丛雨酱板载!&lt;/p&gt;
+    &lt;div&gt;芳乃芳乃 芳乃真香！&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<hr>
+<p><br><br></p>
+<h1 id="·-类选择器"><a href="#·-类选择器" class="headerlink" title="· 类选择器"></a>· 类选择器</h1><p>作用：可以选出1个或多个标签<br>特点：可以根据需求选择<br>使用情况：非常多<br>用法：</p>
+<pre><code>&lt;head&gt;
+    &lt;style&gt;
+        /* 类选择器口诀: 样式 点（.） 定义  结构 类（class）调用  一个或多个  开发最常用 */
+        /* 多类名用处统一格式 节省代码量 */
+        .box-wh-100px &#123;
+            width: 100px;
+            height: 100px;
+        &#125;
+        .red &#123;
+            color: red;
+        &#125;
+        .green &#123;
+            color: green;
+        &#125;
+        .font50 &#123;
+            font-size: 50px;
+        &#125;
+    &lt;/style&gt;
+&lt;/head&gt;
+
+
+&lt;body&gt;
+    &lt;div class=&quot;red font50&quot;&gt;丛雨酱!&lt;/div&gt;
+    &lt;div class=&quot;green&quot;&gt;芳乃酱!&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<hr>
+<p><br><br></p>
+<h1 id="·-id选择器"><a href="#·-id选择器" class="headerlink" title="· id选择器"></a>· id选择器</h1><p>作用：一次只能选择1个标签<br>特点：ID属性只能在每个HTML文档中出现一次<br>使用情况：一般和 js 搭配<br>用法：</p>
+<pre><code>&lt;head&gt;
+    &lt;style&gt;
+        /* id选择器的口诀:样式#定义，结构id调用，只能调用一次，其他不能使用-这是官方规定的-规范- */
+        #pink &#123;
+            color: green;
+        &#125;
+    &lt;/style&gt;
+&lt;/head&gt;
+
+
+&lt;body&gt;
+    &lt;div id=&quot;pink&quot;&gt;丛雨&lt;/div&gt;
+    &lt;!-- 只能调用一次id选择器，因此下方id根据官方规定不能使用了 --&gt;
+    &lt;!-- &lt;div id=&quot;pink&quot;&gt;丛雨&lt;/div&gt;  --&gt;
+&lt;/body&gt;
+</code></pre>
+<hr>
+<p><br><br></p>
+<h1 id="·-通配符选择器"><a href="#·-通配符选择器" class="headerlink" title="· 通配符选择器"></a>· 通配符选择器</h1><p>作用：选择所有的标签<br>特点：选择的太多，有部分不需要<br>使用情况：特殊情况使用（如全部灰色界面-以致默哀<br>用法：</p>
+<pre><code>&lt;head&gt;
+    &lt;style&gt;
+        /* * 把 html body div span li 等等标签都改为了其规定的样式 */
+        /* 在特殊情况使用 */
+        * &#123;
+            color: red;
+        &#125;
+    &lt;/style&gt;
+&lt;/head&gt;
+
+
+&lt;body&gt;
+    &lt;div&gt;丛雨&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+
         </div>
-        <img width="150" height="150" src=""
-          class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="">
-      </a>
-    </div>
-    <h1 class="entry-title">
-      <a href="/2021/09/14/CSS-%E5%9F%BA%E7%A1%80%E9%80%89%E6%8B%A9%E5%99%A8/">
-        CSS 基础选择器</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-      2021-9-14</div>
-    <p>
-      </p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/09/14/CSS-%E5%9F%BA%E7%A1%80%E9%80%89%E6%8B%A9%E5%99%A8/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-       
-    
-      <!-- 其余文章 -->
-      
-        <article class="post post-list" itemscope="" itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2021/09/13/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
+
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/Panzer-Jack/cdn/img/custom/donate/AliPay.jpg"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/Panzer-Jack/cdn/img/custom/donate/WeChatPay.png"></li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <img width="150" height="150" src="https://cdn.jsdelivr.net/gh/Panzer-Jack/cdn/BlogImg/Panzer_Jack.jpg"
-          class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="">
-      </a>
-    </div>
-    <h1 class="entry-title">
-      <a href="/2021/09/13/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">
-        Panzer_Jack 的 个人博客成立日</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-      2021-9-13</div>
-    <p>
-      </p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2021/09/13/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-       
-    
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent">
+        </div>
+        <!-- 评分 -->
+        <div class="single-reward">
+          
+          <!-- 五星评分 -->
+<div id="wpac-rating"></div>
+<script type="text/javascript">
+wpac_init = window.wpac_init || [];
+wpac_init.push({widget: 'Rating', id: 23889});
+(function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = 'https://embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+})();
+</script>
+<!-- <a target="_blank" rel="noopener" href="https://widgetpack.com" class="wpac-cr">Star Rating WIDGET PACK</a> -->
+          
+        </div>
+        <!-- 自定义署名方式 -->
+        <footer class="post-footer">
+          <div class="post-lincenses" style="color: #ff9966;">
+            欢迎转载，转载时请注明来源哦！
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" style="color: #ff9966;" target="_blank"
+              rel="nofollow">
+              <i class="fa fa-creative-commons" aria-hidden="true"></i>ncsa4.0</a>
+          </div>
+          
+          <div class="post-tags" style="color: #a39391">
+            <span><i class="fa fa-tags"></i>
+              
+              <a href="/tags/HTML-CSS/" style="color: #716e77;">HTML + CSS<em>·</em></a>
+              
+            </span>
+            <span>
+              <i class="iconfont icon-file"></i>
+              
+              <a href="/categories/%E6%8A%80%E6%9C%AF%E6%A0%88/" style="color: #716e77;">技术栈</a>
+              
+            </span>
+          </div>
+          
+          <div class="post-share" >
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+        <div class="tag-cloud">
+          <div class="tag-cloud-title">
+          </div>
+          <div class="tag-cloud-tags">
+            <a href="/tags/HTML-CSS/" style="font-size: 10px; color: #f06966">HTML + CSS</a> <a href="/tags/Live2D-%E5%8E%9F%E7%94%BB/" style="font-size: 10px; color: #f06966">Live2D + 原画</a> <a href="/tags/experience/" style="font-size: 10px; color: #f06966">experience</a>
+          </div>
+        </div>
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+          
+            <div class="post-nepre full next">
+              
+              <a href="/2021/09/13/Live2D%E5%A4%84%E5%A5%B3%E4%BD%9C-%E9%A3%8E%E8%BD%A6%E5%AD%90/" rel="next">
+                <div class="background">
+                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Panzer-Jack/cdn/live2d/原画.jpg"
+                    style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
+                    onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/Panzer-Jack/cdn/live2d/原画.jpg">
+                </div>
+                <span class="label">Next Post</span>
+                <div class="info">
+                  <h3>Live2D处女作:风车子</h3>
+                  <hr>
+                </div>
+              </a>
+            </div>
+            
+      </section>
+      <!-- 加密文章隐藏评论 -->
+      <section class="comment" >
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container" class="comment"></div> 
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="/js/md5.min.js"></script>
+<script type="text/javascript">
+	var gitalk = new Gitalk({
+  	clientID: '',
+  	clientSecret: '',
+  	repo: 'Panzer-Jack.github.io',
+  	owner: 'Panzer_Jack',
+	admin: ['Panzer_Jack'],
+	distractionFreeMode: 'true',
+    id: md5(location.pathname)
+})
+gitalk.render('gitalk-container') 
+</script>
 
-
-
-      <div class="clearer">
-      </div>
-    </main>
-    
-  </div>
+      </section>
+      <!-- 加密文章隐藏作者信息 -->
+      
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
+
+
+<!--评论配置-->
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container" class="comment"></div> 
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="/js/md5.min.js"></script>
+<script type="text/javascript">
+	var gitalk = new Gitalk({
+  	clientID: '',
+  	clientSecret: '',
+  	repo: 'Panzer-Jack.github.io',
+  	owner: 'Panzer_Jack',
+	admin: ['Panzer_Jack'],
+	distractionFreeMode: 'true',
+    id: md5(location.pathname)
+})
+gitalk.render('gitalk-container') 
+</script>
+
+
       <!-- body.end -->
     </div>
     <!-- search -->    

@@ -269,7 +269,7 @@
     <audio id="mymusic" src="https://cdn.jsdelivr.net/gh/Panzer-Jack/cdn/music/bg0.mp3" loop="loop"></audio>
     <i class="iconfont icon-notification" onClick="play()">
     </i>
-    <div class="notice-content">一个毁画细胞科技点满的超高校级萌新程序员（如果界面有的模块没加载出来 自行按F5刷新</div>
+    <div class="notice-content">一个毁画细胞科技点满的超高校级萌新程序员（推荐每次加载一个新页面后，按F5刷新一下，如果界面有的模块没加载出来 自行按F5刷新）</div>
     <script>
       function play() {
         var audio = document.getElementById('mymusic');
@@ -623,7 +623,7 @@
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -635,10 +635,10 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: '文章',
-            // PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
+            POSTS: 'Posts',
+            // PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',

@@ -6,7 +6,7 @@
   <!-- <meta name="baidu-site-verification" content="LukfTcyXmC" /> -->
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">上海第二工业大学-自动签到爬虫 V2.0 | Panzer_Jack 的 博客</title>
+  <title itemprop="name">上海第二工业大学-自动签到爬虫V2.0 | Panzer_Jack 的 博客</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Panzer-Jack/cdn/BlogImg/Panzer_Jack.jpg">
   
@@ -266,54 +266,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
 
-<div class="pattern-center single-center">
-  <!-- 有配图默认渲染第一张 -->
-  <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/Panzer-Jack/cdn/BlogImg/header.jpg);"
-    src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Panzer-Jack/cdn/BlogImg/header.jpg">
-  </div>
-  <header class="pattern-header single-header">
-    <h1 class="entry-title">上海第二工业大学-自动签到爬虫 V2.0</h1>
-    <p class="entry-census">
-      
-      
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="fa fa-calendar"></i>
-        </span>
-        <span class="post-meta-item-text"> 2021-9-24 </span>
-      </span>
-      <span class="bull">
-        ·</span>
-      <!-- 浏览数显示 -->
-      <span class="post-meta-item" >
-        <span class="post-meta-item-icon">
-          <i class="iconfont icon-attention"></i>
-        </span>
-        <span class="post-meta-item-text">本文共<span id="busuanzi_value_page_pv"> </span>次阅读
-        </span>
-      </span>
-      <span class="bull">
-        ·</span>
-      <!-- 字数统计-->
-      <span class="post-meta-item" >
-
-        
-      </span>
-      <span class="bull">
-        ·</span>
-      <!-- 评论数显示 -->
-      <!-- <span class="post-meta-item" >
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              </span class="post-meta-item-text">
-                <span class="valine-comment-count" data-xid="/"> </span>
-              </span>
-          </span> -->
-    </p>
-  </header>
-</div>
-
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -325,87 +277,24 @@
         
         <div class="entry-content">
           <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>项目是基于 今天下午被班长打电话 被告知了《论早晨签到重要性与不签会被处分的可能性》后         仔细思索一番 。。。 然后发现比起依赖自己那和鲸鱼一样的记忆力。。不如还是直接依赖电脑算了。。。所以就写了这个爬虫。。。</p>
-<p>自动签到爬虫步骤：<br>    · 准备相关模块<br>    · python脚本编写<br>    · Python程序 EXE执行文件 包装<br>    · Win10 系统下 按时间自动运行脚本代码</p>
+<p>自动签到爬虫程序步骤参考之前发布的文章<br>关于想了解如何做成软件等 请直接在博客首页 加我QQ/WECHAT 好友。。</p>
 <hr>
 <p><br><br><br></p>
-<h4 id="V2-0-更新"><a href="#V2-0-更新" class="headerlink" title="V2.0 更新"></a>V2.0 更新</h4><ol>
-<li>加入反游览器自动脚本检测</li>
-<li>加入伪装IP地址（代理IP）</li>
-<li>后台运行</li>
+<h4 id="V2-0-（-测试版-）"><a href="#V2-0-（-测试版-）" class="headerlink" title="V2.0 （ - 测试版 - ）"></a>V2.0 （ - 测试版 - ）</h4><ol>
+<li>加入更多反爬技术</li>
+<li>使用了tkinter/pygame/playsound等模块 将爬虫程序 制作成软件</li>
 </ol>
 <hr>
 <p><br><br><br></p>
-<h1 id="准备："><a href="#准备：" class="headerlink" title="准备："></a><font color="#FF0000">准备：</font></h1><ol>
-<li>Python</li>
-<li>selenium模块</li>
-<li>chromedriver（对应你自己的谷歌游览器的版本，可以使用镜像网站下载）</li>
-</ol>
-<hr>
-<p><br><br><br></p>
-<h1 id="脚本编写："><a href="#脚本编写：" class="headerlink" title="脚本编写："></a><font color="#FF0000">脚本编写：</font></h1><hr>
-<h3 id="导入相关模块："><a href="#导入相关模块：" class="headerlink" title="导入相关模块："></a>导入相关模块：</h3><p>导入相关模块，建立模拟游览器，我用的是Chrome，也可以使用其他游览器：</p>
-<pre><code>import time
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-import selenium.webdriver
-</code></pre>
-<hr>
-<h3 id="反爬技术："><a href="#反爬技术：" class="headerlink" title="反爬技术："></a>反爬技术：</h3><pre><code>&lt;!-- 反自动脚本检测 --&gt;
-opt = Options()
-opt.add_experimental_option(&#39;excludeSwitches&#39;, [&#39;enable-automation&#39;])
-driver = selenium.webdriver.Chrome(options=opt)
-
-&lt;!-- IP伪装 --&gt;
-opt.add_argument(&quot;--proxy-server=http://代理IP地址:端口&quot;)
-</code></pre>
-<hr>
-<h3 id="后台自动运行："><a href="#后台自动运行：" class="headerlink" title="后台自动运行："></a>后台自动运行：</h3><pre><code>opt.add_argument(&#39;--headless&#39;)
-opt.add_argument(&#39;disbale-gpu&#39;)
-</code></pre>
-<hr>
-<h3 id="打开校园网："><a href="#打开校园网：" class="headerlink" title="打开校园网："></a>打开校园网：</h3><pre><code>url = &quot;https://hsm.sspu.edu.cn/&quot;
-driver.get(url)
-time.sleep(2)
-</code></pre>
-<hr>
-<h3 id="自动签到："><a href="#自动签到：" class="headerlink" title="自动签到："></a>自动签到：</h3><pre><code>driver.find_element_by_id(&quot;username&quot;).send_keys(&quot;你的账号&quot;)
-driver.find_element_by_id(&quot;password&quot;).send_keys(&quot;你的密码&quot;)
-driver.find_element_by_class_name(&quot;submit_button&quot;).click()
-time.sleep(1)
-driver.find_element_by_class_name(&quot;icos&quot;).click()
-driver.find_element_by_id(&quot;fineui_2-inputEl-icon&quot;).click()
-driver.find_element_by_id(&quot;p1_TiWen-inputEl&quot;).send_keys(&quot;36&quot;)
-driver.find_element_by_class_name(&quot;f-field-checkbox-switch&quot;).click()
-time.sleep(2)
-driver.find_element_by_class_name(&quot;f-btn-text&quot;).click()
-</code></pre>
-<hr>
-<h3 id="自动退出游览器"><a href="#自动退出游览器" class="headerlink" title="自动退出游览器"></a>自动退出游览器</h3><pre><code>time.sleep(3)
-driver.quit()
-</code></pre>
-<hr>
-<p><br><br><br></p>
-<h1 id="Python程序-EXE-包装："><a href="#Python程序-EXE-包装：" class="headerlink" title="Python程序 EXE 包装："></a><font color="#FF0000">Python程序 EXE 包装：</font></h1><hr>
-<h3 id="pip3-安装-pyinstaller"><a href="#pip3-安装-pyinstaller" class="headerlink" title="pip3 安装 pyinstaller"></a>pip3 安装 pyinstaller</h3><pre><code>&lt;!-- 使用cmd命令台 --&gt;
-pip3 install pyinstaller
-</code></pre>
-<hr>
-<h3 id="pyinstaller-包装-python脚本"><a href="#pyinstaller-包装-python脚本" class="headerlink" title="pyinstaller 包装 python脚本"></a>pyinstaller 包装 python脚本</h3><pre><code>&lt;!-- 使用cmd命令切换到当前路径下 --&gt;
-&lt;!-- 然后执行指令(下面的xxxx写你自己程序的名字)： --&gt;
-pyinstaller  xxxx.py
-&lt;!-- 然后在该目录下./dist/xxxx/xxxx.exe出现exe文件 --&gt;
-</code></pre>
-<hr>
-<p><br><br><br></p>
-<h1 id="Win10-系统下-按时间自动运行脚本代码："><a href="#Win10-系统下-按时间自动运行脚本代码：" class="headerlink" title="Win10 系统下 按时间自动运行脚本代码："></a><font color="#FF0000">Win10 系统下 按时间自动运行脚本代码：</font></h1><ol>
-<li>打开 控制面板\系统和安全\管理工具\任务计划程序 </li>
-<li>创建基本任务（在右边那栏里头）：名称描述你自己随便写</li>
-<li>然后签到时间为 每天 （反正我们这边是每天都要签到的）</li>
-<li>每日：开始时间 就是 开始时间</li>
-<li>操作：启动程序</li>
-<li>将程序与脚本 牵引至 之前你所包装的python exe执行文件上</li>
-<li>点击完成</li>
-<li>重复设立 多个执行任务 （防止某一次卡机 爬虫程序失败）</li>
+<h1 id="下载地址："><a href="#下载地址：" class="headerlink" title="下载地址："></a><font color="#FF0000">下载地址：</font></h1><ol>
+<li><p>CSDN：<a target="_blank" rel="noopener" href="https://download.csdn.net/download/Panzer_Jack/24895610">https://download.csdn.net/download/Panzer_Jack/24895610</a></p>
+</li>
+<li><p>GitHub：暂无</p>
+</li>
+<li><p>百度云：链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/10PqlFDSdCjSg7fqTluwRFQ">https://pan.baidu.com/s/10PqlFDSdCjSg7fqTluwRFQ</a><br>提取码：0721</p>
+</li>
+<li><p>直接向我本人要</p>
+</li>
 </ol>
 <hr>
 
@@ -457,13 +346,9 @@ wpac_init.push({widget: 'Rating', id: 23889});
           <div class="post-tags" style="color: #a39391">
             <span><i class="fa fa-tags"></i>
               
-              <a href="/tags/Python/" style="color: #716e77;">Python<em>·</em></a>
-              
             </span>
             <span>
               <i class="iconfont icon-file"></i>
-              
-              <a href="/categories/%E9%A1%B9%E7%9B%AE/" style="color: #716e77;">项目</a>
               
             </span>
           </div>
@@ -489,7 +374,7 @@ wpac_init.push({widget: 'Rating', id: 23889});
           
             <div class="post-nepre full next">
               
-              <a href="/2021/09/22/%E4%B8%8A%E6%B5%B7%E7%AC%AC%E4%BA%8C%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6-%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E7%88%AC%E8%99%AB/" rel="next">
+              <a href="/2021/09/24/%E4%B8%8A%E6%B5%B7%E7%AC%AC%E4%BA%8C%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6-%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E7%88%AC%E8%99%ABV1-5/" rel="next">
                 <div class="background">
                   <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Panzer-Jack/cdn/BlogImg/header.jpg"
                     style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
@@ -497,7 +382,7 @@ wpac_init.push({widget: 'Rating', id: 23889});
                 </div>
                 <span class="label">Next Post</span>
                 <div class="info">
-                  <h3>上海第二工业大学-自动签到爬虫</h3>
+                  <h3>上海第二工业大学-自动签到爬虫 V1.5</h3>
                   <hr>
                 </div>
               </a>

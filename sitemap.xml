@@ -38,15 +38,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/Live2D-%E5%8E%9F%E7%94%BB/index.html</loc>
-    
-    <lastmod>2022-04-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/tags/HTML-CSS/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
@@ -56,7 +47,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/experience/index.html</loc>
+    <loc>http://example.com/tags/Live2D-%E5%8E%9F%E7%94%BB/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
     
@@ -66,6 +57,15 @@
   
   <url>
     <loc>http://example.com/tags/Python/index.html</loc>
+    
+    <lastmod>2022-04-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/experience/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
     
@@ -230,14 +230,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/experience/</loc>
+    <loc>http://example.com/tags/ACG/</loc>
     <lastmod>2022-04-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/ACG/</loc>
+    <loc>http://example.com/tags/experience/</loc>
     <lastmod>2022-04-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

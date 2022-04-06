@@ -128,15 +128,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/ACG/index.html</loc>
-    
-    <lastmod>2022-04-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/tags/HTML-CSS/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
@@ -146,7 +137,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/Python/index.html</loc>
+    <loc>http://example.com/tags/ACG/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
     
@@ -164,6 +155,15 @@
   </url>
   
   <url>
+    <loc>http://example.com/tags/Python/index.html</loc>
+    
+    <lastmod>2022-04-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://example.com/tags/experience/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
@@ -173,7 +173,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E7%BE%8E%E6%9C%AF/index.html</loc>
+    <loc>http://example.com/categories/%E6%8A%80%E6%9C%AF%E6%A0%88/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
     
@@ -182,7 +182,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E6%8A%80%E6%9C%AF%E6%A0%88/index.html</loc>
+    <loc>http://example.com/categories/%E7%BE%8E%E6%9C%AF/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
     

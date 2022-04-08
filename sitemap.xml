@@ -146,7 +146,16 @@
   </url>
   
   <url>
-    <loc>https://www.panzer-jack.cn/tags/HTML-CSS/index.html</loc>
+    <loc>https://www.panzer-jack.cn/tags/ACG/index.html</loc>
+    
+    <lastmod>2022-04-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.panzer-jack.cn/tags/Python/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
     
@@ -164,7 +173,7 @@
   </url>
   
   <url>
-    <loc>https://www.panzer-jack.cn/tags/ACG/index.html</loc>
+    <loc>https://www.panzer-jack.cn/tags/HTML-CSS/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
     
@@ -174,15 +183,6 @@
   
   <url>
     <loc>https://www.panzer-jack.cn/tags/experience/index.html</loc>
-    
-    <lastmod>2022-04-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.panzer-jack.cn/tags/Python/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
     

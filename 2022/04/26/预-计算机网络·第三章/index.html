@@ -5,7 +5,7 @@
   <meta name="baidu-site-verification" content="code-aJFlGsOY7N" />
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">2022/4/5小破站更新日志 | Panzer_Jack 的 博客</title>
+  <title itemprop="name">&lt;预&gt;计算机网络·第三章 | Panzer_Jack 的 博客</title>
   
     <link rel="shortcut icon" href="https://pic.imgdb.cn/item/624bee62239250f7c5566d31.jpg">
   
@@ -378,11 +378,11 @@
 
 <div class="pattern-center single-center">
   <!-- 有配图默认渲染第一张 -->
-  <div class="pattern-attachment-img lazyload" style="background-image: url(https://pic.imgdb.cn/item/624bee62239250f7c5566d31.jpg);"
-    src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bee62239250f7c5566d31.jpg">
+  <div class="pattern-attachment-img lazyload" style="background-image: url(https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg);"
+    src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg">
   </div>
   <header class="pattern-header single-header">
-    <h1 class="entry-title">2022/4/5小破站更新日志</h1>
+    <h1 class="entry-title"><预>计算机网络·第三章</h1>
     <p class="entry-census">
       
       
@@ -390,7 +390,7 @@
         <span class="post-meta-item-icon">
           <i class="fa fa-calendar"></i>
         </span>
-        <span class="post-meta-item-text"> 2022-4-5 </span>
+        <span class="post-meta-item-text"> 2022-4-26 </span>
       </span>
       <span class="bull">
         ·</span>
@@ -434,7 +434,84 @@
         <!--套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>简要概括；<br>&emsp;&emsp;· 将Github仓库同步到Vercel上<br>&emsp;&emsp;· 将部分在Github上通过jsdeliver进行CDN加速的图床转移到国内的图床网站上<br>&emsp;&emsp;· 更新了博文加密功能</p>
+          <h1 id="第三章·数据链路层"><a href="#第三章·数据链路层" class="headerlink" title="第三章·数据链路层"></a>第三章·数据链路层</h1><hr>
+<h2 id="1-数据链路层的基本概念"><a href="#1-数据链路层的基本概念" class="headerlink" title="1. 数据链路层的基本概念"></a>1. 数据链路层的基本概念</h2><ol>
+<li>数据链路层概念：为相邻节点提供可靠数据传输</li>
+<li>帧的概率：<ol>
+<li>数据链路层的单位</li>
+<li>组成<ul>
+<li>帧头：源MAC地址、目的MAC地址、类型</li>
+<li>数据</li>
+<li>帧尾：校验</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>以太网数据帧中的MAC和LLC：<ol>
+<li>MAC：对接网络层</li>
+<li>LLC：对接物理层 </li>
+</ol>
+</li>
+<li>数据链路层的传输方式：<ul>
+<li>单播</li>
+<li>广播</li>
+</ul>
+</li>
+<li>数据链路层的三个基本问题：<ol>
+<li>封装成帧</li>
+<li>透明传输</li>
+<li>差错检测</li>
+</ol>
+</li>
+<li>以太网中的设备：<ol>
+<li>集线器</li>
+<li>交换机</li>
+<li>网桥</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h2 id="2-数据链路层的通信协议"><a href="#2-数据链路层的通信协议" class="headerlink" title="2. 数据链路层的通信协议"></a>2. 数据链路层的通信协议</h2><ol>
+<li>冲突域和广播域：<ol>
+<li>冲突域：交换机的每一个端口都是冲突域；冲突域只能发生在一个网段（第一层：物理层）</li>
+<li>广播域：交换机的所有端口都在一个广播域；广播域在一个或多个网段发生（第二层：数据链路层）</li>
+</ol>
+</li>
+<li>虚拟局域网 VLAN：将物理的 局域网LAN 划分为多个虚拟的局域网<ol>
+<li>优点：<ol>
+<li>划分广播域：减少垃圾数据</li>
+<li>增加局域网安全性</li>
+<li>增加局域网健壮性</li>
+<li>灵活构建工作组</li>
+</ol>
+</li>
+<li>划分方式：<ol>
+<li>基于端口：<ul>
+<li>Access：只许1个VLAN通过</li>
+<li>trunk：只许多个VLAN通过</li>
+</ul>
+</li>
+<li>基于子网</li>
+<li>基于MAC地址</li>
+<li>基于协议</li>
+<li>基于匹配策略</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>CSMA/CD：针对广播型信道中的一个放冲突技术<ul>
+<li>四大要点：<ol>
+<li>先听再发</li>
+<li>边听边发</li>
+<li>冲突停止</li>
+<li>延迟后发</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>PPP：封装数据帧</li>
+<li>CRC：循环冗余校验</li>
+</ol>
 
         </div>
 
@@ -484,13 +561,13 @@ wpac_init.push({widget: 'Rating', id: 23889});
           <div class="post-tags" style="color: #a39391">
             <span><i class="fa fa-tags"></i>
               
-              <a href="/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/" style="color: #716e77;">更新日志<em>·</em></a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="color: #716e77;">计算机网络<em>·</em></a>
               
             </span>
             <span>
               <i class="iconfont icon-file"></i>
               
-              <a href="/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/" style="color: #716e77;">更新日志</a>
+              <a href="/categories/%E8%80%83%E7%A0%94/" style="color: #716e77;">考研</a>
               
             </span>
           </div>
@@ -515,15 +592,15 @@ wpac_init.push({widget: 'Rating', id: 23889});
         
         <div class="post-nepre half previous">
           
-            <a href="/2022/04/06/%E6%8A%80%E6%9C%AF%E6%A0%88%E5%AD%A6%E4%B9%A0-%E8%87%AA%E6%88%91%E8%A7%84%E5%88%92%E4%B9%A6/" rel="prev">
+            <a href="/2022/04/26/%E9%A2%84-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%C2%B7%E7%AC%AC%E5%9B%9B%E7%AB%A0/" rel="prev">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bf2d6239250f7c55f0064.png"
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg"
                   style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)"
-                  src="https://pic.imgdb.cn/item/624bf2d6239250f7c55f0064.png">
+                  src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg">
               </div>
               <span class="label">Previous Post</span>
               <div class="info">
-                <h3>技术栈学习-自我规划书（#TODO）</h3>
+                <h3>&lt;预&gt;计算机网络·第四章</h3>
                 <hr>
               </div>
             </a>
@@ -533,15 +610,15 @@ wpac_init.push({widget: 'Rating', id: 23889});
           
           <div class="post-nepre half next">
             
-              <a href="/2022/04/04/%E8%BD%BB%E5%B0%8F%E8%AF%B4%E8%BF%BD%E4%B9%A6%E7%9B%AE%E5%BD%95/" rel="next">
+              <a href="/2022/04/24/%E9%A2%84-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%C2%B7%E7%AC%AC%E4%BA%8C%E7%AB%A0/" rel="next">
                 <div class="background">
-                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bed13239250f7c553e4a3.jpg"
+                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg"
                     style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
-                    onerror="imgError(this,3)" src="https://pic.imgdb.cn/item/624bed13239250f7c553e4a3.jpg">
+                    onerror="imgError(this,3)" src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg">
                 </div>
                 <span class="label">Next Post</span>
                 <div class="info">
-                  <h3>轻小说追书目录（#TODO）</h3>
+                  <h3>&lt;预&gt;计算机网络·第二章</h3>
                   <hr>
                 </div>
               </a>

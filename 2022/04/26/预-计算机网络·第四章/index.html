@@ -435,15 +435,61 @@
         
         <div class="entry-content">
           <h1 id="第四章·网络层"><a href="#第四章·网络层" class="headerlink" title="第四章·网络层"></a>第四章·网络层</h1><h2 id="1-网络层的作用"><a href="#1-网络层的作用" class="headerlink" title="1. 网络层的作用"></a>1. 网络层的作用</h2><ol>
-<li>作用： </li>
+<li>作用：提供点到点的服务</li>
 <li>单位：分组</li>
 </ol>
 <hr>
-<h2 id="2-网际层的协议IP"><a href="#2-网际层的协议IP" class="headerlink" title="2. 网际层的协议IP"></a>2. 网际层的协议IP</h2><hr>
-<h2 id="3-IP地址"><a href="#3-IP地址" class="headerlink" title="3. IP地址"></a>3. IP地址</h2><hr>
+<h2 id="2-网际层的协议IP"><a href="#2-网际层的协议IP" class="headerlink" title="2. 网际层的协议IP"></a>2. 网际层的协议IP</h2><ol>
+<li>ARP地址解析协议：根据IP地址获取物理地址</li>
+<li>ICMP国际控制报文协议</li>
+<li>IGMP国际组管理协议</li>
+</ol>
+<hr>
+<h2 id="3-IP地址"><a href="#3-IP地址" class="headerlink" title="3. IP地址"></a>3. IP地址</h2><ol>
+<li>IP地址的概念：IP协议提供给互联网上每一个网络和每一台主机分配一个逻辑地址，来屏蔽物理地址的差异。</li>
+<li>IP地址的组成：网络号+主机号<ul>
+<li>子网掩码: 由1和0组成 1代表主机号</li>
+</ul>
+</li>
+<li>IP地址的分类：A,B,C,D （网络号占用1字节~4字节）</li>
+<li>IPv6：由16进制组成，用来满足IPv4出现匮乏的问题</li>
+</ol>
+<hr>
 <h2 id="4-子网划分"><a href="#4-子网划分" class="headerlink" title="4. 子网划分"></a>4. 子网划分</h2><hr>
-<h2 id="5-网络层的路由"><a href="#5-网络层的路由" class="headerlink" title="5. 网络层的路由"></a>5. 网络层的路由</h2><hr>
-<h2 id="6-路由器"><a href="#6-路由器" class="headerlink" title="6. 路由器"></a>6. 路由器</h2>
+<h2 id="5-网络层的路由"><a href="#5-网络层的路由" class="headerlink" title="5. 网络层的路由"></a>5. 网络层的路由</h2><ol>
+<li><p>路由</p>
+<ol>
+<li>路由是什么？：从源地址到目的地址所经过的路径</li>
+<li>路由器：网络层基本设备，数据转发，存放着通往各个网段的路由表</li>
+<li>路由表：通往其他网段的路径</li>
+<li>网关：所有的网段内部与不同网段进行通信都需要经过网关</li>
+<li>路由获取方式：<ol>
+<li>直连</li>
+<li>静态</li>
+<li>动态</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>路由的配置方式</p>
+<ol>
+<li>静态路由：<ul>
+<li>静态路由：由管理员手工配置，适合结构稳定的小型网络</li>
+<li>缺省路由：是一种特殊的路由，当报文没有在路由表中找到匹配的具体表项时才能使用的路由</li>
+</ul>
+</li>
+<li>动态路由：通过协议来实现不同网段的路由互通</li>
+<li>动态路由协议：<ol>
+<li>RIP：基于矢量, 适用于中小型网络拓扑。。</li>
+<li>OSPF：基于链路，适用于较大规模的网络。。</li>
+<li>BGP：自治系统间的路由协议</li>
+<li>IS-IS：内部网关协议</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
         </div>
 
         <!-- .entry-content -->
@@ -520,10 +566,27 @@ wpac_init.push({widget: 'Rating', id: 23889});
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
+        
+        <div class="post-nepre half previous">
+          
+            <a href="/2022/04/26/%E9%A2%84-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%C2%B7%E7%AC%AC%E4%BA%94%E7%AB%A0/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg"
+                  style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)"
+                  src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg">
+              </div>
+              <span class="label">Previous Post</span>
+              <div class="info">
+                <h3>&lt;预&gt;计算机网络·第五章</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
           
           
-            <div class="post-nepre full next">
-              
+          
+          <div class="post-nepre half next">
+            
               <a href="/2022/04/26/%E9%A2%84-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%C2%B7%E7%AC%AC%E4%B8%89%E7%AB%A0/" rel="next">
                 <div class="background">
                   <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg"

@@ -5,7 +5,7 @@
   <meta name="baidu-site-verification" content="code-aJFlGsOY7N" />
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">&lt;预&gt;计算机网络·第四章 | Panzer_Jack 的 博客</title>
+  <title itemprop="name">&lt;浙大&gt;数据结构·1.2链表线性表[线性结构] | Panzer_Jack 的 博客</title>
   
     <link rel="shortcut icon" href="https://pic.imgdb.cn/item/624bee62239250f7c5566d31.jpg">
   
@@ -378,11 +378,11 @@
 
 <div class="pattern-center single-center">
   <!-- 有配图默认渲染第一张 -->
-  <div class="pattern-attachment-img lazyload" style="background-image: url(https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg);"
-    src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg">
+  <div class="pattern-attachment-img lazyload" style="background-image: url(https://pic.imgdb.cn/item/624d319c239250f7c5568d0c.jpg);"
+    src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624d319c239250f7c5568d0c.jpg">
   </div>
   <header class="pattern-header single-header">
-    <h1 class="entry-title"><预>计算机网络·第四章</h1>
+    <h1 class="entry-title"><浙大>数据结构·1.2链表线性表[线性结构]</h1>
     <p class="entry-census">
       
       
@@ -390,7 +390,7 @@
         <span class="post-meta-item-icon">
           <i class="fa fa-calendar"></i>
         </span>
-        <span class="post-meta-item-text"> 2022-4-26 </span>
+        <span class="post-meta-item-text"> 2022-5-4 </span>
       </span>
       <span class="bull">
         ·</span>
@@ -434,62 +434,12 @@
         <!--套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h1 id="第四章·网络层"><a href="#第四章·网络层" class="headerlink" title="第四章·网络层"></a>第四章·网络层</h1><h2 id="1-网络层的作用"><a href="#1-网络层的作用" class="headerlink" title="1. 网络层的作用"></a>1. 网络层的作用</h2><ol>
-<li>作用：提供点到点的服务</li>
-<li>单位：分组</li>
-</ol>
-<hr>
-<h2 id="2-网际层的协议IP"><a href="#2-网际层的协议IP" class="headerlink" title="2. 网际层的协议IP"></a>2. 网际层的协议IP</h2><ol>
-<li>ARP地址解析协议：根据IP地址获取物理地址</li>
-<li>ICMP国际控制报文协议</li>
-<li>IGMP国际组管理协议</li>
-</ol>
-<hr>
-<h2 id="3-IP地址"><a href="#3-IP地址" class="headerlink" title="3. IP地址"></a>3. IP地址</h2><ol>
-<li>IP地址的概念：IP协议提供给互联网上每一个网络和每一台主机分配一个逻辑地址，来屏蔽物理地址的差异。</li>
-<li>IP地址的组成：网络号+主机号<ul>
-<li>子网掩码: 由1和0组成 1代表主机号</li>
+          <h1 id="1-2链表线性表-线性结构"><a href="#1-2链表线性表-线性结构" class="headerlink" title="1.2链表线性表[线性结构]"></a>1.2链表线性表[线性结构]</h1><ul>
+<li>不要求逻辑上相邻的两个元素物理上也相邻；通过“链”建立起数据元素之间的逻辑关系。</li>
 </ul>
-</li>
-<li>IP地址的分类：A,B,C,D （网络号占用1字节~4字节）</li>
-<li>IPv6：由16进制组成，用来满足IPv4出现匮乏的问题</li>
-</ol>
 <hr>
-<h2 id="4-子网划分"><a href="#4-子网划分" class="headerlink" title="4. 子网划分"></a>4. 子网划分</h2><hr>
-<h2 id="5-网络层的路由"><a href="#5-网络层的路由" class="headerlink" title="5. 网络层的路由"></a>5. 网络层的路由</h2><ol>
-<li><p>路由</p>
-<ol>
-<li>路由是什么？：从源地址到目的地址所经过的路径</li>
-<li>路由器：网络层基本设备，数据转发，存放着通往各个网段的路由表</li>
-<li>路由表：通往其他网段的路径</li>
-<li>网关：所有的网段内部与不同网段进行通信都需要经过网关</li>
-<li>路由获取方式：<ol>
-<li>直连</li>
-<li>静态</li>
-<li>动态</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>路由的配置方式</p>
-<ol>
-<li>静态路由：<ul>
-<li>静态路由：由管理员手工配置，适合结构稳定的小型网络</li>
-<li>缺省路由：是一种特殊的路由，当报文没有在路由表中找到匹配的具体表项时才能使用的路由</li>
-</ul>
-</li>
-<li>动态路由：通过协议来实现不同网段的路由互通</li>
-<li>动态路由协议：<ol>
-<li>RIP：基于矢量, 适用于中小型网络拓扑。。</li>
-<li>OSPF：基于链路，适用于较大规模的网络。。</li>
-<li>BGP：自治系统间的路由协议</li>
-<li>IS-IS：内部网关协议</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-
+<p><br><br><br></p>
+<h2 id="主要操作的实现"><a href="#主要操作的实现" class="headerlink" title="主要操作的实现:"></a>主要操作的实现:</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3>
         </div>
 
         <!-- .entry-content -->
@@ -538,13 +488,17 @@ wpac_init.push({widget: 'Rating', id: 23889});
           <div class="post-tags" style="color: #a39391">
             <span><i class="fa fa-tags"></i>
               
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="color: #716e77;">计算机网络<em>·</em></a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="color: #716e77;">数据结构与算法<em>·</em></a>
               
             </span>
             <span>
               <i class="iconfont icon-file"></i>
               
+              <a href="/categories/C-C/" style="color: #716e77;">C/C++</a>
+              
               <a href="/categories/%E8%80%83%E7%A0%94/" style="color: #716e77;">考研</a>
+              
+              <a href="/categories/%E7%AE%97%E6%B3%95/" style="color: #716e77;">算法</a>
               
             </span>
           </div>
@@ -566,36 +520,19 @@ wpac_init.push({widget: 'Rating', id: 23889});
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-        
-        <div class="post-nepre half previous">
-          
-            <a href="/2022/04/26/%E9%A2%84-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%C2%B7%E7%AC%AC%E4%BA%94%E7%AB%A0/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg"
-                  style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)"
-                  src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg">
-              </div>
-              <span class="label">Previous Post</span>
-              <div class="info">
-                <h3>&lt;预&gt;计算机网络·第五章</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
           
           
-          
-          <div class="post-nepre half next">
-            
-              <a href="/2022/04/26/%E9%A2%84-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%C2%B7%E7%AC%AC%E4%B8%89%E7%AB%A0/" rel="next">
+            <div class="post-nepre full next">
+              
+              <a href="/2022/05/04/%E6%B5%99%E5%A4%A7-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%C2%B71-1%E6%95%B0%E7%BB%84%E7%BA%BF%E6%80%A7%E8%A1%A8-%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84/" rel="next">
                 <div class="background">
-                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg"
+                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624d319c239250f7c5568d0c.jpg"
                     style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
-                    onerror="imgError(this,3)" src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg">
+                    onerror="imgError(this,3)" src="https://pic.imgdb.cn/item/624d319c239250f7c5568d0c.jpg">
                 </div>
                 <span class="label">Next Post</span>
                 <div class="info">
-                  <h3>&lt;预&gt;计算机网络·第三章</h3>
+                  <h3>&lt;浙大&gt;数据结构·1.1数组线性表[线性结构]</h3>
                   <hr>
                 </div>
               </a>

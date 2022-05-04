@@ -5,7 +5,7 @@
   <meta name="baidu-site-verification" content="code-aJFlGsOY7N" />
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">&lt;预&gt;操作系统·第一章 | Panzer_Jack 的 博客</title>
+  <title itemprop="name">&lt;浙大&gt;数据结构·1.4栈的链表储存[线性结构] | Panzer_Jack 的 博客</title>
   
     <link rel="shortcut icon" href="https://pic.imgdb.cn/item/624bee62239250f7c5566d31.jpg">
   
@@ -378,11 +378,11 @@
 
 <div class="pattern-center single-center">
   <!-- 有配图默认渲染第一张 -->
-  <div class="pattern-attachment-img lazyload" style="background-image: url(https://pic.imgdb.cn/item/624bed13239250f7c553e47d.png);"
-    src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bed13239250f7c553e47d.png">
+  <div class="pattern-attachment-img lazyload" style="background-image: url(https://pic.imgdb.cn/item/62724d5a09475431292acf20.png);"
+    src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/62724d5a09475431292acf20.png">
   </div>
   <header class="pattern-header single-header">
-    <h1 class="entry-title"><预>操作系统·第一章</h1>
+    <h1 class="entry-title"><浙大>数据结构·1.4栈的链表储存[线性结构]</h1>
     <p class="entry-census">
       
       
@@ -390,7 +390,7 @@
         <span class="post-meta-item-icon">
           <i class="fa fa-calendar"></i>
         </span>
-        <span class="post-meta-item-text"> 2022-4-27 </span>
+        <span class="post-meta-item-text"> 2022-5-4 </span>
       </span>
       <span class="bull">
         ·</span>
@@ -434,69 +434,72 @@
         <!--套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h1 id="第一章·引论"><a href="#第一章·引论" class="headerlink" title="第一章·引论"></a>第一章·引论</h1><hr>
-<h2 id="1-操作系统介绍"><a href="#1-操作系统介绍" class="headerlink" title="1. 操作系统介绍"></a>1. 操作系统介绍</h2><ol>
-<li>定义：一种软件，用来控制和管理计算机软件和硬件资源来方便用户使用。</li>
-<li>地位：为其他软件提供一个运行环境</li>
-<li>基本特征<ol>
-<li>并发：是指多个活动在给定的同一时间 间隔 内进行。</li>
-<li>共享：指计算机系统中的资源被多个进程共用</li>
-<li>异步：进程以不可预知的速度向前推进</li>
-<li>虚拟：把物理上的实体变为若干个逻辑上的对应物</li>
-</ol>
-</li>
-<li>主要功能<ol>
-<li>处理器管理</li>
-<li>存储器管理</li>
-<li>文件管理</li>
-<li>设备管理</li>
-</ol>
-</li>
-<li>发展历程：<ol>
-<li>人工操作阶段（无操作系统）</li>
-<li>批处理阶段（操作系统开始出现）</li>
-<li>分时操作系统（不可以排队，有了人机交互）</li>
-<li>实时操作系统（可以插队）</li>
-</ol>
-</li>
-</ol>
+          <h1 id="1-4栈的链表储存-线性结构"><a href="#1-4栈的链表储存-线性结构" class="headerlink" title="1.4栈的链表储存[线性结构]"></a>1.4栈的链表储存[线性结构]</h1><ul>
+<li>栈的链式存储结构实际上就是一个单链表，叫做链栈。插入和删除操作只能在链栈的栈顶进行。</li>
+</ul>
 <hr>
-<h2 id="2-不得不知的概念"><a href="#2-不得不知的概念" class="headerlink" title="2. 不得不知的概念"></a>2. 不得不知的概念</h2><ol>
-<li>两种指令：<ol>
-<li>特权指令：用户不可使用的指令</li>
-<li>非特权指令：普通运算指令</li>
-</ol>
-</li>
-<li>两种程序：<ol>
-<li>内核程序：系统管理者，可以执行一切指令</li>
-<li>应用程序：普通用户程序只可执行非特权指令，运行在用户态</li>
-</ol>
-</li>
-<li>处理机状态：<ol>
-<li>用户态：CPU只能执行非特权指令</li>
-<li>核心态（管态、内核态）：可以执行所有指令</li>
-<li>用户态到核心态：通过中断（是硬件完成）</li>
-<li>核心态到用户态</li>
-</ol>
-</li>
-<li>原语：<ol>
-<li>处于操作系统的最底层，是最接近硬件的部分</li>
-<li>这些程序的运行具有原子性，其操作只能一气呵成</li>
-<li>这些程序的运行时间都较短，而且调用频繁</li>
-</ol>
-</li>
-<li>中断：<ol>
-<li>内中断</li>
-<li>外中断</li>
-</ol>
-</li>
-<li>系统调用：系统给程序员（应用程序）提供的唯一接口，可以获得OS的服务，在用户态发生，核心态处理</li>
-<li>体系结构：<ol>
-<li>大内核</li>
-<li>微内核</li>
-</ol>
-</li>
-</ol>
+<p><br><br><br></p>
+<h2 id="主要操作的实现"><a href="#主要操作的实现" class="headerlink" title="主要操作的实现:"></a>主要操作的实现:</h2><pre><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+// 1.4栈的链表储存[线性结构]
+
+#define MAXSIZE 100   // 堆栈元素的最大个数
+typedef int ElementType; // ElementType 暂时定义为 int 类型 
+typedef struct SNode *Stack;
+struct SNode&#123;
+    ElementType Data;   // 存储堆栈元素
+    Stack Next;  // 记录栈顶元素下标 
+&#125;; 
+
+Stack CreateStack();  // 初始化链栈 
+int IsEmpty(Stack S);  // 判断链栈是否为空 
+void Push(Stack S,ElementType item);  // 入栈 
+ElementType Pop(Stack S);  // 出栈
+
+
+// 初始化
+Stack CreateStack()
+&#123;
+    Stack S = new struct SNode;
+    Stack Next = NULL;
+    return S;
+&#125;
+
+// 是否为空
+int IsEmpty(Stack S)
+&#123;
+    return(S-&gt;Next == NULL);
+&#125;
+
+// 入栈
+void Push(Stack S, ElementType item)
+&#123;
+    Stack temp = new struct SNode;
+    temp-&gt;Data = item;
+    temp-&gt;Next = S-&gt;Next;
+    S-&gt;Next = temp;
+&#125;
+
+// 出栈
+ElementType Pop(Stack S)
+&#123;
+    Stack First = S-&gt;Next;
+    ElementType TopVal;
+    if(IsEmpty(S))
+    &#123;
+        cout &lt;&lt; &quot;IsEmpty !&quot; &lt;&lt; endl;
+        return 0;
+    &#125;
+    else
+    &#123;
+        TopVal = First-&gt;Data;
+        S-&gt;Next = First-&gt;Next;
+        delete First;
+        return TopVal;
+    &#125;
+&#125;
+</code></pre>
 
         </div>
 
@@ -546,13 +549,17 @@ wpac_init.push({widget: 'Rating', id: 23889});
           <div class="post-tags" style="color: #a39391">
             <span><i class="fa fa-tags"></i>
               
-              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="color: #716e77;">操作系统<em>·</em></a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="color: #716e77;">数据结构与算法<em>·</em></a>
               
             </span>
             <span>
               <i class="iconfont icon-file"></i>
               
+              <a href="/categories/C-C/" style="color: #716e77;">C/C++</a>
+              
               <a href="/categories/%E8%80%83%E7%A0%94/" style="color: #716e77;">考研</a>
+              
+              <a href="/categories/%E7%AE%97%E6%B3%95/" style="color: #716e77;">算法</a>
               
             </span>
           </div>
@@ -574,36 +581,19 @@ wpac_init.push({widget: 'Rating', id: 23889});
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-        
-        <div class="post-nepre half previous">
-          
-            <a href="/2022/04/27/%E9%A2%84-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA%C2%B7%E7%AC%AC%E4%B8%80%E7%AB%A0/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bf2d6239250f7c55f0064.png"
-                  style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)"
-                  src="https://pic.imgdb.cn/item/624bf2d6239250f7c55f0064.png">
-              </div>
-              <span class="label">Previous Post</span>
-              <div class="info">
-                <h3>&lt;预&gt;数据库系统概论·第一章</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
           
           
-          
-          <div class="post-nepre half next">
-            
-              <a href="/2022/04/27/%E9%A2%84-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%C2%B7%E7%AC%AC%E4%B8%80%E7%AB%A0/" rel="next">
+            <div class="post-nepre full next">
+              
+              <a href="/2022/05/04/%E6%B5%99%E5%A4%A7-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%C2%B71-3%E6%A0%88%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%82%A8%E5%AD%98-%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84/" rel="next">
                 <div class="background">
-                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bb3e3239250f7c5e11449.png"
+                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/62724d5a09475431292acf20.png"
                     style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
-                    onerror="imgError(this,3)" src="https://pic.imgdb.cn/item/624bb3e3239250f7c5e11449.png">
+                    onerror="imgError(this,3)" src="https://pic.imgdb.cn/item/62724d5a09475431292acf20.png">
                 </div>
                 <span class="label">Next Post</span>
                 <div class="info">
-                  <h3>&lt;预&gt;计算机组成原理·第一章</h3>
+                  <h3>&lt;浙大&gt;数据结构·1.3栈的顺序储存[线性结构]</h3>
                   <hr>
                 </div>
               </a>

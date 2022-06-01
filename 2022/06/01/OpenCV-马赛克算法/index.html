@@ -5,7 +5,7 @@
   <meta name="baidu-site-verification" content="code-aJFlGsOY7N" />
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">CSS 字体属性 | Panzer_Jack 的 博客</title>
+  <title itemprop="name">OpenCV-马赛克算法 | Panzer_Jack 的 博客</title>
   
     <link rel="shortcut icon" href="https://pic.imgdb.cn/item/624bee62239250f7c5566d31.jpg">
   
@@ -378,11 +378,11 @@
 
 <div class="pattern-center single-center">
   <!-- 有配图默认渲染第一张 -->
-  <div class="pattern-attachment-img lazyload" style="background-image: url(https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg);"
-    src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg">
+  <div class="pattern-attachment-img lazyload" style="background-image: url(https://pic.imgdb.cn/item/6297179f09475431299eff3e.png);"
+    src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/6297179f09475431299eff3e.png">
   </div>
   <header class="pattern-header single-header">
-    <h1 class="entry-title">CSS 字体属性</h1>
+    <h1 class="entry-title">OpenCV-马赛克算法</h1>
     <p class="entry-census">
       
       
@@ -390,7 +390,7 @@
         <span class="post-meta-item-icon">
           <i class="fa fa-calendar"></i>
         </span>
-        <span class="post-meta-item-text"> 2021-9-14 </span>
+        <span class="post-meta-item-text"> 2022-6-1 </span>
       </span>
       <span class="bull">
         ·</span>
@@ -434,140 +434,27 @@
         <!--套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>CSS-字体属性-学习笔记<br>字体属性：<br>    · 字体系列<br>    · 字体大小<br>    · 字体粗细<br>    · 文字样式（如斜体等）<br>    · 字体复合属性<br>    · 总结</p>
+          <h5 id="规定"><a href="#规定" class="headerlink" title="规定"></a>规定</h5><p>m,n 变量为所取马赛克范围</p>
 <hr>
-<p><br><br><br></p>
-<h1 id="·-字体系列"><a href="#·-字体系列" class="headerlink" title="· 字体系列"></a>· 字体系列</h1><p>CSS 使用 font-family 属性定义字体系列<br>用法：</p>
-<pre><code>&lt;style&gt;
-    .font &#123;
-        font-family: &#39;Microsoft Yahei&#39;, &#39;Times New Roman&#39;, Times, serif;
-    &#125;
-&lt;/style&gt;
+<h1 id="1-马赛克算法"><a href="#1-马赛克算法" class="headerlink" title="1. 马赛克算法"></a>1. 马赛克算法</h1><pre><code>import cv2
+import numpy as np
+
+
+img = cv2.imread(&quot;../01_Img/01.jpg&quot;, 1)
+imgInfo = img.shape
+
+for m in range(100, 150):
+    for n in range(100, 150):
+        if m%10 == 0 and n%10 == 0:
+            for i in range(0, 10):
+                for j in range(0, 10):
+                    (b, g, r) = img[m, n]
+                    img[i+m, j+n] = (b, g, r)
+
+cv2.imshow(&quot;dst&quot;, img)
+cv2.waitKey(0)
 </code></pre>
-<br>
 
-<strong>
-
-<p>· 各种字体之间必须使用英文下的逗号隔开<tr><br>· 一般情况下，如果有空格隔开的多个单词的字体，加引号</tr><tr><br>· 尽量使用系统默认的自带字体，保证在任何用户的游览器中都能正确显示</tr><tr><br>· 最常见的几个字体：’Mircrosoft Yahei’, tahoma, arial, ‘Hiragino Sans GB’ </tr></p>
-</strong>
-
-<hr>
-<p><br><br><br></p>
-<h1 id="·-字体大小"><a href="#·-字体大小" class="headerlink" title="· 字体大小"></a>· 字体大小</h1><p>CSS 使用 font-family 属性定义文本的字体系列<br>用法：</p>
-<pre><code>.font-size &#123;
-    font-size: 100px;
-&#125;
-</code></pre>
-<br>
-
-<strong>
-
-<p>· px( 像素 )大小是我们网页的最常用的单位<tr><br>· 谷歌游览器默认的字体大小为16px</tr><tr><br>· 不同游览器可能默认显示的字体大小不一致，我们尽量给一个明确值大小，不要默认大小</tr><tr><br>· 我们该可以给body指定整个页面的大小:</tr></p>
-<pre><code> body &#123;
-     font-size: 16px;
- &#125;
-
- &lt;!-- 标题标签比较特殊,需要单独指定文字大小 --&gt;
- h2 &#123;
-     font-size: 20px;
- &#125;
-</code></pre>
-</strong>
-
-<hr>
-<p><br><br><br></p>
-<h1 id="·-字体粗细"><a href="#·-字体粗细" class="headerlink" title="· 字体粗细"></a>· 字体粗细</h1><p>CSS 使用 font-weight 属性定义字体粗细<br>用法：</p>
-<pre><code>.font-weight-bold &#123;
-    font-weight: bold;
-&#125;
-
-/* 实际开发中，提倡用数字 表示加粗或变细 */
-.font-weight &#123;
-    font-weight: 700;
-&#125;
-
-h2 &#123;
-    font-weight: 400;
-&#125;
-</code></pre>
-<br>
-
-<strong>
-
-<p>· normal 默认值<tr><br>· bold 加粗</tr><tr><br>· number 100 ~ 900，其中normal等于400，bold等于700</tr><tr><br>· 学会让加粗标签不加粗，或其他标签加粗</tr></p>
-</strong>
-
-<hr>
-<p><br><br><br></p>
-<h1 id="·-文字样式"><a href="#·-文字样式" class="headerlink" title="· 文字样式"></a>· 文字样式</h1><p>CSS 使用 font-style 属性设置文本的风格<br>用法：</p>
-<pre><code>.font-weight-bold &#123;
-    font-weight: bold;
-&#125;
-</code></pre>
-<br>
-
-<strong>
-
-<p>· normal 默认值<tr><br>· bold 加粗</tr><tr><br>· number 100 ~ 900，其中normal等于400，bold等于700</tr><tr><br>· 学会让加粗标签不加粗，或其他标签加粗</tr></p>
-</strong>
-
-<hr>
-<p><br><br><br></p>
-<h1 id="·-字体复合属性"><a href="#·-字体复合属性" class="headerlink" title="· 字体复合属性"></a>· 字体复合属性</h1><p>CSS 使用 font-style 属性设置文本的风格<br>用法：</p>
-<pre><code>.div &#123;
-    /* 复合属性：简写的方式 */
-    /* font: font-style font-weight font-size/line-height font-family */
-
-    font: italic 700 16px &quot;Microsoft YaHei&quot;
-&#125;
-</code></pre>
-<br>
-
-<strong>
-
-<p>· 使用 font 属性时，必须按上面语法格式中的顺序书写，<font color="#FF0000">不能更换顺序</font>， 并且各个属性间以<font color="#FF0000">空格</font>隔开<tr><br>· 不需要设置的属性可以省略（取默认值），但<font color="#FF0000">必须保留 font-size 和 font-family 属性</font>否则 font 属性 将不起作用</tr><tr></tr></p>
-</strong>
-
-<hr>
-<p><br><br><br></p>
-<h1 id="·-总结"><a href="#·-总结" class="headerlink" title="· 总结"></a>· 总结</h1>   <table border="1" cellspacing="0">
-        <tr>
-            <th>
-                属性
-            </th>
-            <th>
-                表示
-            </th>
-            <th>
-                注意点
-            </th>
-        </tr>
-        <tr>
-            <td>font-size</td>
-            <td>字号</td>
-            <td>我们通常用的单位是px像素，一定要跟上单位</td>
-        </tr>
-        <tr>
-            <td>font-family</td>
-            <td>字体</td>
-            <td>实际工作中按照团队约定来写字体</td>
-        </tr>
-        <tr>
-            <td>font-weight</td>
-            <td>字体粗细</td>
-            <td>记住加粗是 700 或者 bold 不加粗 是 normal 或者 400 记住数字不跟单位</td>
-        </tr>
-        <tr>
-            <td>font-style</td>
-            <td>字体样式</td>
-            <td>记住倾斜是 italic ; 不倾斜是 normal ； 工作中我们最常用 normal</td>
-        </tr>
-        <tr>
-            <td>font</td>
-            <td>字体连写</td>
-            <td>1.字体连写是有顺序的 ; 不能随意换位置  2.其中字号 和 字体 必须同时出现</td>
-        </tr>
-    </table>
         </div>
 
         <!-- .entry-content -->
@@ -616,13 +503,17 @@ wpac_init.push({widget: 'Rating', id: 23889});
           <div class="post-tags" style="color: #a39391">
             <span><i class="fa fa-tags"></i>
               
-              <a href="/tags/HTML-CSS/" style="color: #716e77;">HTML + CSS<em>·</em></a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="color: #716e77;">计算机视觉<em>·</em></a>
               
             </span>
             <span>
               <i class="iconfont icon-file"></i>
               
-              <a href="/categories/%E5%89%8D%E7%AB%AF/" style="color: #716e77;">前端</a>
+              <a href="/categories/Python/" style="color: #716e77;">Python</a>
+              
+              <a href="/categories/OpenCV/" style="color: #716e77;">OpenCV</a>
+              
+              <a href="/categories/%E7%AE%97%E6%B3%95/" style="color: #716e77;">算法</a>
               
             </span>
           </div>
@@ -647,15 +538,15 @@ wpac_init.push({widget: 'Rating', id: 23889});
         
         <div class="post-nepre half previous">
           
-            <a href="/2021/09/22/%E4%B8%8A%E6%B5%B7%E7%AC%AC%E4%BA%8C%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6-%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E7%88%AC%E8%99%AB/" rel="prev">
+            <a href="/2022/06/01/OpenCV-%E6%AF%9B%E7%8E%BB%E7%92%83%E7%AE%97%E6%B3%95/" rel="prev">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bf170239250f7c55c5fc1.jpg"
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/6297179f09475431299eff3e.png"
                   style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)"
-                  src="https://pic.imgdb.cn/item/624bf170239250f7c55c5fc1.jpg">
+                  src="https://pic.imgdb.cn/item/6297179f09475431299eff3e.png">
               </div>
               <span class="label">Previous Post</span>
               <div class="info">
-                <h3>上海第二工业大学-自动签到爬虫</h3>
+                <h3>OpenCV-毛玻璃算法</h3>
                 <hr>
               </div>
             </a>
@@ -665,15 +556,15 @@ wpac_init.push({widget: 'Rating', id: 23889});
           
           <div class="post-nepre half next">
             
-              <a href="/2021/09/14/CSS-%E5%9F%BA%E7%A1%80%E9%80%89%E6%8B%A9%E5%99%A8/" rel="next">
+              <a href="/2022/06/01/OpenCV-%E9%A2%9C%E8%89%B2%E5%8F%8D%E8%BD%AC%E7%AE%97%E6%B3%95/" rel="next">
                 <div class="background">
-                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg"
+                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/6297179f09475431299eff3e.png"
                     style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
-                    onerror="imgError(this,3)" src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg">
+                    onerror="imgError(this,3)" src="https://pic.imgdb.cn/item/6297179f09475431299eff3e.png">
                 </div>
                 <span class="label">Next Post</span>
                 <div class="info">
-                  <h3>CSS 基础选择器</h3>
+                  <h3>OpenCV-颜色反转算法</h3>
                   <hr>
                 </div>
               </a>

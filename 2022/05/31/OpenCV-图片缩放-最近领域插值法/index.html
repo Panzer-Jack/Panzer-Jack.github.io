@@ -5,7 +5,7 @@
   <meta name="baidu-site-verification" content="code-aJFlGsOY7N" />
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">&lt;预&gt;计算机网络·第二章 | Panzer_Jack 的 博客</title>
+  <title itemprop="name">OpenCV-图片缩放算法[最近领域插值法] | Panzer_Jack 的 博客</title>
   
     <link rel="shortcut icon" href="https://pic.imgdb.cn/item/624bee62239250f7c5566d31.jpg">
   
@@ -376,54 +376,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
 
-<div class="pattern-center single-center">
-  <!-- 有配图默认渲染第一张 -->
-  <div class="pattern-attachment-img lazyload" style="background-image: url(https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg);"
-    src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg">
-  </div>
-  <header class="pattern-header single-header">
-    <h1 class="entry-title"><预>计算机网络·第二章</h1>
-    <p class="entry-census">
-      
-      
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="fa fa-calendar"></i>
-        </span>
-        <span class="post-meta-item-text"> 2022-4-24 </span>
-      </span>
-      <span class="bull">
-        ·</span>
-      <!-- 浏览数显示 -->
-      <span class="post-meta-item" >
-        <span class="post-meta-item-icon">
-          <i class="iconfont icon-attention"></i>
-        </span>
-        <span class="post-meta-item-text">本文共<span id="busuanzi_value_page_pv"> </span>次阅读
-        </span>
-      </span>
-      <span class="bull">
-        ·</span>
-      <!-- 字数统计-->
-      <span class="post-meta-item" >
-
-        
-      </span>
-      <span class="bull">
-        ·</span>
-      <!-- 评论数显示 -->
-      <!-- <span class="post-meta-item" >
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              </span class="post-meta-item-text">
-                <span class="valine-comment-count" data-xid="/"> </span>
-              </span>
-          </span> -->
-    </p>
-  </header>
-</div>
-
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -434,106 +386,26 @@
         <!--套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h1 id="第二章·物理层"><a href="#第二章·物理层" class="headerlink" title="第二章·物理层"></a>第二章·物理层</h1><hr>
-<h2 id="1-物理层的基本概念"><a href="#1-物理层的基本概念" class="headerlink" title="1. 物理层的基本概念"></a>1. 物理层的基本概念</h2><ol>
-<li><p>四大特性：</p>
-<ol>
-<li>机械特性：接口是怎么样的</li>
-<li>电气特性：用多少伏的电</li>
-<li>功能特性：线路上电平电压的特性（使用什么介质的 传输光信号/ 电信号）</li>
-<li>过程特性：实现不同功能所发射信号的顺序</li>
-</ol>
-</li>
-<li><p>两种信号：</p>
-<ol>
-<li>模拟信号：不离散，连续的；特定频率的信号，有更加丰富的表现形式</li>
-<li>数字信号：离散，不连续的；只有0和1，有更加强的抗干扰能力</li>
-</ol>
-</li>
-<li><p>调制和编码：</p>
-<ol>
-<li>调制：模拟信号转换（ 模拟信号/数字信号 —&gt; 模拟信号 ）</li>
-<li>编码：数字信号转换（ 模拟信号/数字信号 —&gt; 数字信号 ）<ul>
-<li>步骤：<ol>
-<li>采样</li>
-<li>量化</li>
-<li>编码</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>区别：<ul>
-<li>数据可以通过编码手段转换成数字信号，也可以通过调制手段将数据转为模拟信号</li>
-<li>数字数据可以通过数字发生器转化成数字信号，也可以通过调制器转化成模拟信号</li>
-<li>模拟数据可以通过PCM编码器转化成数字信号，可以通过放大器调制器转成模拟信号<br><img src="/2022/04/24/%E9%A2%84-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%C2%B7%E7%AC%AC%E4%BA%8C%E7%AB%A0/%E8%B0%83%E5%88%B6%E4%B8%8E%E7%BC%96%E7%A0%81.png"></li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p>传输介质：</p>
-<ol>
-<li><p>双绞线：</p>
-<ol>
-<li>屏蔽双绞线 STP：抗干扰性强，贵一些</li>
-<li>非屏蔽双绞线 UTP：抗干扰差，便宜一些</li>
-<li>制作标准：<ol>
-<li>568B：橙白、橙、绿白、蓝、蓝白、绿、棕白、棕 （ 8根线; 计算机通信实际只是用 1-橙白、2-橙、3-绿白、6-绿  这4根线路）</li>
-<li>568A：13、26调换 （ 绿白、绿、橙白、蓝、蓝白、橙、棕白、棕 ）</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>光纤：</p>
-<ol>
-<li>单模光纤：单调专一（直射），传输距离远（ 100 KM ）</li>
-<li>多模光纤：多种繁杂（折射 – 数据会损耗），传输距离近（ 2 KM ）<br><img src="/2022/04/24/%E9%A2%84-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%C2%B7%E7%AC%AC%E4%BA%8C%E7%AB%A0/%E5%85%89%E7%BA%A4.png"></li>
-</ol>
-</li>
-<li><p>同轴电缆（已淘汰）</p>
-</li>
-<li><p>无线：无线信号频率 IEEE802.11</p>
-</li>
-</ol>
-</li>
-<li><p>三大部分</p>
-<ol>
-<li>源系统：发送数据的一端（电脑）</li>
-<li>传输系统：传输过程中的各种传输介质</li>
-<li>目标系统：接收数据的电脑</li>
-</ol>
-</li>
-</ol>
-<hr>
-<h2 id="2-物理层的基本通信技术"><a href="#2-物理层的基本通信技术" class="headerlink" title="2. 物理层的基本通信技术"></a>2. 物理层的基本通信技术</h2><ol>
-<li>四种信道复用技术：<ol>
-<li>复用技术：将多种不同的信号在 同一信道上进行传输，复用技术主要是用于解决不同信号传输时如何区分</li>
-<li>频分复用 FDM：划分不同频率来并行传输信号</li>
-<li>时分复用 TDM：划分不同时间段进行传输信号</li>
-<li>波分复用 WDM：根据光波的波长进行传输（合波器耦合; 仅光纤）</li>
-<li>码分复用 CDM：在同一时间同一频率根据传输的数据码进行区分<br><img src="/2022/04/24/%E9%A2%84-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%C2%B7%E7%AC%AC%E4%BA%8C%E7%AB%A0/%E5%A4%8D%E7%94%A8%E4%BF%A1%E9%81%93.png"></li>
-</ol>
-</li>
-<li>数据传输方式：<ol>
-<li>通过同一时间传输数量分为：<ul>
-<li>串行传输：通过一条数据线，将数据信号一位一位依次传输</li>
-<li>并行传输：将数据分组，在多条并行信道上同时传输</li>
-</ul>
-</li>
-<li>通过数据报文的双方行为分为：<ul>
-<li>同步传输：两端耦合性，双方同时在线</li>
-<li>异步传输：序列处理，双方必须要同时在线</li>
-</ul>
-</li>
-<li>通过传输信号分为：<ul>
-<li>基带传输：传输数字信号</li>
-<li>频带传输：传输模拟信号（300-3400 HZ）</li>
-</ul>
-</li>
-<li>传输方向：单工，半双工，全双工</li>
-<li>传播对象：单播，组播，广播</li>
-</ol>
-</li>
-</ol>
+          <h1 id="最近领域插值法"><a href="#最近领域插值法" class="headerlink" title="最近领域插值法"></a>最近领域插值法</h1><p>img.jpg = 10<em>20  —-&gt;  dst_img.jpg = 5</em>10<br>功能：图片缩放<br>案例：<br>    dst_img(1, 2) &lt;—- img(2, 4)<br>    dst_img的x=1 来自 img的x=2<br>    原图像的 x = 目标图像的 x*(原图像的行/目标图像的行)  —-&gt;  原图像的 2 = 目标图像的 1*(10/5)<br>    原图像的 y = 目标图像的 y*(原图像的列/目标图像的列)  —-&gt;  原图像的 4 = 目标图像的 2*(20/10)<br>    如果 x 或 y = 浮点型, 则结果化为整型 —-&gt;  原图像的 x = 114.514 = 目标图像的 x = 114</p>
+<p>Python 源码实现:</p>
+<pre><code>import cv2
+import numpy as np
+
+img = cv2.imread(&quot;../01_Img/01.jpg&quot;, 1)
+imgInfo = img.shape
+img_height, img_width, img_mode = imgInfo
+dst_height = int(img_height/2)
+dst_width = int(img_width/2)
+dstImage = np.zeros((dst_height, dst_width, 3), np.uint8)  # 0 ~ 255
+for i in range(0, dst_height):  # 行信息
+    for j in range(0, dst_width):  # 列信息
+        iNew = int(i*(img_height*1.0/dst_height))
+        jNew = int(j*(img_width*1.0/dst_width))
+        dstImage[i, j] = img[iNew, jNew]
+
+cv2.imshow(&quot;dstImage&quot;, dstImage)
+cv2.waitKey(0)
+</code></pre>
 
         </div>
 
@@ -583,13 +455,17 @@ wpac_init.push({widget: 'Rating', id: 23889});
           <div class="post-tags" style="color: #a39391">
             <span><i class="fa fa-tags"></i>
               
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="color: #716e77;">计算机网络<em>·</em></a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="color: #716e77;">计算机视觉<em>·</em></a>
               
             </span>
             <span>
               <i class="iconfont icon-file"></i>
               
-              <a href="/categories/%E8%80%83%E7%A0%94/" style="color: #716e77;">考研</a>
+              <a href="/categories/Python/" style="color: #716e77;">Python</a>
+              
+              <a href="/categories/OpenCV/" style="color: #716e77;">OpenCV</a>
+              
+              <a href="/categories/%E7%AE%97%E6%B3%95/" style="color: #716e77;">算法</a>
               
             </span>
           </div>
@@ -614,15 +490,15 @@ wpac_init.push({widget: 'Rating', id: 23889});
         
         <div class="post-nepre half previous">
           
-            <a href="/2022/04/26/%E9%A2%84-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%C2%B7%E7%AC%AC%E4%B8%89%E7%AB%A0/" rel="prev">
+            <a href="/2022/05/31/OpenCV-%E5%9B%BE%E7%89%87%E7%BC%A9%E6%94%BE-%E5%8F%8C%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC%E6%B3%95/" rel="prev">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg"
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src=""
                   style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)"
-                  src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg">
+                  src="">
               </div>
               <span class="label">Previous Post</span>
               <div class="info">
-                <h3>&lt;预&gt;计算机网络·第三章</h3>
+                <h3>OpenCV-图片缩放算法[双线性插值法]</h3>
                 <hr>
               </div>
             </a>
@@ -632,15 +508,15 @@ wpac_init.push({widget: 'Rating', id: 23889});
           
           <div class="post-nepre half next">
             
-              <a href="/2022/04/24/%E9%A2%84-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%C2%B7%E7%AC%AC%E4%B8%80%E7%AB%A0/" rel="next">
+              <a href="/2022/05/10/%E6%8A%80%E6%9C%AF%E6%A0%88%E5%AD%A6%E4%B9%A0-%E8%87%AA%E6%88%91%E8%A7%84%E5%88%92%E4%B9%A6/" rel="next">
                 <div class="background">
-                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg"
+                  <img class="lazyload" src="https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://pic.imgdb.cn/item/624bf2d6239250f7c55f0064.png"
                     style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
-                    onerror="imgError(this,3)" src="https://pic.imgdb.cn/item/624bed13239250f7c553e499.jpg">
+                    onerror="imgError(this,3)" src="https://pic.imgdb.cn/item/624bf2d6239250f7c55f0064.png">
                 </div>
                 <span class="label">Next Post</span>
                 <div class="info">
-                  <h3>&lt;预&gt;计算机网络·第一章</h3>
+                  <h3>技术栈学习-自我规划书（#TODO）</h3>
                   <hr>
                 </div>
               </a>

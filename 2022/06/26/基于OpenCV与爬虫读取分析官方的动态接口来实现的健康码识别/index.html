@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>基于OpenCV与爬虫读取分析官方的动态接口来实现的健康码识别 | Panzer_Jack の 博客</title><meta name="keywords" content="爬虫"><meta name="author" content="Panzer_Jack"><meta name="copyright" content="Panzer_Jack"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Notes: 看到 CSDN上 健康码识别 基本都是通过 OpenCV 色块检测 + OCR AI文字识别检测时间 的 方式 来进行 健康码状态的识别。嗯，我感觉…这个好像不是很靠谱….. 毕竟健康码和图片文字是可以伪造的。或者说 如果你用 不久前的 截图 不就可以萌混过关了嘛 。。。ο(&#x3D;• ω &lt;&#x3D;)づ☆.。欸嘿~~~所以 我想试试 能不能 通过获取二维码的实际数据来判断 健康码是否是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于OpenCV与爬虫读取分析官方的动态接口来实现的健康码识别">
+<meta property="og:url" content="https://www.panzer-jack.cn/2022/06/26/%E5%9F%BA%E4%BA%8EOpenCV%E4%B8%8E%E7%88%AC%E8%99%AB%E8%AF%BB%E5%8F%96%E5%88%86%E6%9E%90%E5%AE%98%E6%96%B9%E7%9A%84%E5%8A%A8%E6%80%81%E6%8E%A5%E5%8F%A3%E6%9D%A5%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%81%A5%E5%BA%B7%E7%A0%81%E8%AF%86%E5%88%AB/index.html">
+<meta property="og:site_name" content="Panzer_Jack の 博客">
+<meta property="og:description" content="Notes: 看到 CSDN上 健康码识别 基本都是通过 OpenCV 色块检测 + OCR AI文字识别检测时间 的 方式 来进行 健康码状态的识别。嗯，我感觉…这个好像不是很靠谱….. 毕竟健康码和图片文字是可以伪造的。或者说 如果你用 不久前的 截图 不就可以萌混过关了嘛 。。。ο(&#x3D;• ω &lt;&#x3D;)づ☆.。欸嘿~~~所以 我想试试 能不能 通过获取二维码的实际数据来判断 健康码是否是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/624bb3e3239250f7c5e11449.png">
+<meta property="article:published_time" content="2022-06-26T01:33:42.000Z">
+<meta property="article:modified_time" content="2022-10-19T01:14:01.362Z">
+<meta property="article:author" content="Panzer_Jack">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/624bb3e3239250f7c5e11449.png"><link rel="shortcut icon" href="https://pic.imgdb.cn/item/624bee62239250f7c5566d31.jpg"><link rel="canonical" href="https://www.panzer-jack.cn/2022/06/26/%E5%9F%BA%E4%BA%8EOpenCV%E4%B8%8E%E7%88%AC%E8%99%AB%E8%AF%BB%E5%8F%96%E5%88%86%E6%9E%90%E5%AE%98%E6%96%B9%E7%9A%84%E5%8A%A8%E6%80%81%E6%8E%A5%E5%8F%A3%E6%9D%A5%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%81%A5%E5%BA%B7%E7%A0%81%E8%AF%86%E5%88%AB/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?23518eada5375dce3bc3bdb8226ee3db";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '基于OpenCV与爬虫读取分析官方的动态接口来实现的健康码识别',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-19 09:14:01'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic1.imgdb.cn/item/624bee62239250f7c5566d31.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list-ul"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E7%BE%8E%E6%9C%AF/"><i class="fa-fw fas fa-paint-brush"></i><span> 美术</span></a></li><li><a class="site-page child" href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/"><i class="fa-fw fas fa-commenting"></i><span> 随笔</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-code"></i><span> 技术</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Python/"><span> Python</span></a></li><li><a class="site-page child" href="/categories/C-C/"><span> C/C++</span></a></li><li><a class="site-page child" href="/categories/Java/"><span> Java</span></a></li><li><a class="site-page child" href="/categories/Linux/"><span> Linux</span></a></li><li><a class="site-page child" href="/categories/%E5%89%8D%E7%AB%AF/"><i class="fa-fw fas fa-life-ring"></i><span> 前端</span></a></li><li><a class="site-page child" href="/categories/%E5%90%8E%E7%AB%AF/"><i class="fa-fw fas fa-server"></i><span> 后端</span></a></li><li><a class="site-page child" href="/categories/%E7%AE%97%E6%B3%95/"><i class="fa-fw fas fa-bed"></i><span> 算法</span></a></li><li><a class="site-page child" href="/categories/%E8%80%83%E7%A0%94/"><i class="fa-fw fas fa-coffee"></i><span> 考研</span></a></li><li><a class="site-page child" href="/categories/%E9%A1%B9%E7%9B%AE/"><i class="fa-fw fas fa-calendar"></i><span> 项目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/"><i class="fa-fw fas fa-leaf"></i><span> 更新日志</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://panzer-jack.gitee.io"><i class="fa-fw fas fa-list"></i><span> 镜像网站</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-at"></i><span> 关于博主</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic.imgdb.cn/item/624bb3e3239250f7c5e11449.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Panzer_Jack の 博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list-ul"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E7%BE%8E%E6%9C%AF/"><i class="fa-fw fas fa-paint-brush"></i><span> 美术</span></a></li><li><a class="site-page child" href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/"><i class="fa-fw fas fa-commenting"></i><span> 随笔</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-code"></i><span> 技术</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Python/"><span> Python</span></a></li><li><a class="site-page child" href="/categories/C-C/"><span> C/C++</span></a></li><li><a class="site-page child" href="/categories/Java/"><span> Java</span></a></li><li><a class="site-page child" href="/categories/Linux/"><span> Linux</span></a></li><li><a class="site-page child" href="/categories/%E5%89%8D%E7%AB%AF/"><i class="fa-fw fas fa-life-ring"></i><span> 前端</span></a></li><li><a class="site-page child" href="/categories/%E5%90%8E%E7%AB%AF/"><i class="fa-fw fas fa-server"></i><span> 后端</span></a></li><li><a class="site-page child" href="/categories/%E7%AE%97%E6%B3%95/"><i class="fa-fw fas fa-bed"></i><span> 算法</span></a></li><li><a class="site-page child" href="/categories/%E8%80%83%E7%A0%94/"><i class="fa-fw fas fa-coffee"></i><span> 考研</span></a></li><li><a class="site-page child" href="/categories/%E9%A1%B9%E7%9B%AE/"><i class="fa-fw fas fa-calendar"></i><span> 项目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/categories/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/"><i class="fa-fw fas fa-leaf"></i><span> 更新日志</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://panzer-jack.gitee.io"><i class="fa-fw fas fa-list"></i><span> 镜像网站</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-at"></i><span> 关于博主</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">基于OpenCV与爬虫读取分析官方的动态接口来实现的健康码识别</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-06-26T01:33:42.000Z" title="发表于 2022-06-26 09:33:42">2022-06-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-19T01:14:01.362Z" title="更新于 2022-10-19 09:14:01">2022-10-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/">Python</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="基于OpenCV与爬虫读取分析官方的动态接口来实现的健康码识别"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><hr>
+<p><strong>Notes:</strong></p>
+<p>看到 CSDN上 健康码识别 基本都是通过 OpenCV 色块检测 + OCR AI文字识别检测时间 的 方式 来进行 健康码状态的识别。嗯，我感觉…这个好像不是很靠谱….. 毕竟健康码和图片文字是可以伪造的。或者说 如果你用 不久前的 截图 不就可以萌混过关了嘛 。。。<br>ο(=• ω &lt;=)づ☆.。欸嘿~~~<br>所以 我想试试 能不能 通过获取二维码的实际数据来判断 健康码是否是真的健康</p>
+<p>所以这里 使用 上海的 随申码 来做样例。</p>
+<ol>
+<li>整体步骤：二维码识别 —-&gt; 爬虫获取健康码状态数据 —-&gt; Json 解析成 人看的 </li>
+</ol>
+<hr>
+<h1 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1. 环境准备"></a>1. 环境准备</h1><ol>
+<li>所需Python模块：<pre><code> &lt;1&gt; pyzbar ----&gt; 二维码解析
+ &lt;2&gt; requests ----&gt; 爬虫
+ &lt;3&gt; OpenCV ----&gt; 获取图像
+ &lt;4&gt; ast ----&gt; 字符串 转 字典 
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyzbar <span class="keyword">import</span> pyzbar</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> ast</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h1 id="2-二维码识别-部分"><a href="#2-二维码识别-部分" class="headerlink" title="2. 二维码识别 部分"></a>2. 二维码识别 部分</h1><p><strong>这里我使用了 电脑摄像头来进行 识别。</strong></p>
+<h3 id="1-gt-OpenCV-代码框架："><a href="#1-gt-OpenCV-代码框架：" class="headerlink" title="1&gt; OpenCV 代码框架："></a>1&gt; OpenCV 代码框架：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cap = cv2.VideoCapture(<span class="number">0</span>) <span class="comment"># 参数 = 0 为开启电脑摄像头, 若填路径则为开启视频文件</span></span><br><span class="line">isOpened = cap.isOpened() <span class="comment"># 判断摄像头是否正常开启</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> isOpened:</span><br><span class="line">    flag, frame = cap.read()</span><br><span class="line">    <span class="comment"># 二维码解析 部分</span></span><br><span class="line">	<span class="comment"># 爬虫 程序</span></span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>) == <span class="built_in">ord</span>(<span class="string">&quot;q&quot;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p>这里简要解释一下 OpenCV 这里的代码含义：</p>
+<ul>
+<li>通过 cap = cv2.VideoCapture(0) 开启摄像头 并套入循环 从而 通过 cap.read 不断获取摄像头每帧的图片，这里的 frame 即为图片数据，flag 为 是否成功读取到 图片。 </li>
+<li> <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>) == <span class="built_in">ord</span>(<span class="string">&quot;q&quot;</span>):</span><br><span class="line">    <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+   这串代码 功能 为 按 q 键 停止运行摄像头 </li>
+</ul>
+<h3 id="2-gt-pyzbar-二维码解析："><a href="#2-gt-pyzbar-二维码解析：" class="headerlink" title="2&gt; pyzbar 二维码解析："></a>2&gt; pyzbar 二维码解析：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bacodes = pyzbar.decode(frame, symbols=[pyzbar.ZBarSymbol.QRCODE])</span><br><span class="line"><span class="keyword">for</span> bacode <span class="keyword">in</span> bacodes:</span><br><span class="line">    url = bacode.data.decode(<span class="string">&quot;UTF-8&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>解释一下 这里的代码含义：</p>
+<p>通过之前 OpenCV 摄像头 获取的图片数据 frame 传入给  pyzbar.decode()函数 来解析，在这里我们可以获取到 二维码 所指向的 目标地址 data 以及 二维码坐标 和 长宽大小，我们这里 直接取 data  指向的 网址 通过<br>    for bacode in bacodes:<br>    &nbsp;&nbsp;&nbsp;&nbsp;url = bacode.data.decode(“UTF-8”)<br>   来获取到 目标网址 url （这里要 声明是 UTF-8 编码的）</p>
+<blockquote>
+<p>url =  ‘<a target="_blank" rel="noopener" href="https://s.sh.gov.cn/XXXXXXXXXXXXXXXXXXXXXXX&#39;">https://s.sh.gov.cn/XXXXXXXXXXXXXXXXXXXXXXX&#39;</a></p>
+</blockquote>
+<p>如果 你打开这里网址 你会发现  这里会直接给出 你的 健康码状态<br>嗯，非常好！那么 我们如果直接  获取其html数据 不就能准确判定 了嘛。。<br><img src="https://img-blog.csdnimg.cn/7c79adfd2023446196c152cb6c451334.png" alt="结果"></p>
+<hr>
+<h1 id="3-爬虫-部分"><a href="#3-爬虫-部分" class="headerlink" title="3. 爬虫 部分"></a>3. 爬虫 部分</h1><p>好！优势在我<br>这就动手，先在上面那个网页中 F12 凑一眼 定位一下这个 “绿色”<br><img src="https://img-blog.csdnimg.cn/820761806cfb457790efa50b6314611e.png" alt="在这里插入图片描述"><br>搜噶 搜噶 ，原来 在这个 id = “app” 的 div里头啊</p>
+<p>好！ 导入requests模块来获取url地址下的整体数据凑一眼试试</p>
+<h3 id="1-gt-试手1："><a href="#1-gt-试手1：" class="headerlink" title="1&gt; 试手1："></a>1&gt; 试手1：</h3><p>（这里还是 需要声明是 UTF-8 编码的）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar_req = requests.get(tar_url, <span class="string">&#x27;lxml&#x27;</span>)  <span class="comment"># 使用 lxml 来解析</span></span><br><span class="line">tar_req.encoding = <span class="string">&#x27;utf-8&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(tar_req.text)</span><br></pre></td></tr></table></figure>
+<p>嗯嗯。。嗯？。。嗯？？？？<br>内容呢？？？<br><img src="https://img-blog.csdnimg.cn/6e9f16754f0a4dce9fb8e70fb8d45c3c.png" alt="在这里插入图片描述"><br>wait。。wait，stay cool<br>先看看 html源码</p>
+<p><img src="https://img-blog.csdnimg.cn/bb5e93b460f2446db6f9d3895529a6fa.png" alt="在这里插入图片描述"><br>emm…. 好像这里官方用了 Ajax 异步加载，通过JavaScript 动态生成了网页内容</p>
+<h3 id="2-gt-试手2："><a href="#2-gt-试手2：" class="headerlink" title="2&gt; 试手2："></a>2&gt; 试手2：</h3><h4 id="理论部分："><a href="#理论部分：" class="headerlink" title="理论部分："></a>理论部分：</h4><p>既然它 通过 js 动态渲染了，那么 这里我们需要去 找到 对应的 JS文件所实时返回的 数据接口。接下来就是 愉快的解密环节</p>
+<p>老方法，游览器中 F12 一下 </p>
+<ol>
+<li>首先打开网页调试工具 </li>
+<li>进入network 选项卡</li>
+<li>选择xhr类型</li>
+<li>刷新一下网页页面</li>
+<li>找到xhr类的文件<br><img src="https://img-blog.csdnimg.cn/0a2308406f28488dbba1a25fbed2da78.png" alt="在这里插入图片描述"><br>嗯 这里就存在唯一 一个文件，我们点击它打开 就能如图所示<br>这里我们 可以看到 三个数据类别：code , data , message<br>其中只有 code 和 data 存在 有用信息，那么这两个哪个是我们需要的信息呢？</li>
+</ol>
+<p>啊。。。好像二维码过期了<br>（所以这里申明一下，健康码好像是每分钟都会重新刷新一次）<br><img src="https://img-blog.csdnimg.cn/9826b6e9506540a7a8bb609f15a42f67.png" alt="在这里插入图片描述"><br>看来我们得 重新识别一下二维码了。。<br>等等！wait！这里 code ：“1” 了<br>看来我们可以确定一点 code 是用来 判断 二维码是否有效的参数<br><img src="https://img-blog.csdnimg.cn/842db491b603490e99d7554c83cc25e2.png#pic_center" alt="在这里插入图片描述"><br>那么 我们可以锁定 我们所需要的数据 应该是 在 data 里面<br>data里包含了 2个数据  “type”:”00” 和 “usertype”:”1<br>因为 我没有 红码的小伙伴帮忙做对比，那么只能通过查询JS 源码 来 确认数据了<br>之前 我们看 html源码 可以知道 我们数据 是 藏在 id = “app” 的 div 里头<br>所以 这里 我们 还是将 刚刚 的 xhr类 换成 all 可以看到 有个 app.xxx.js的文件在实时数据里面，我们点开它<br><img src="https://img-blog.csdnimg.cn/1b4da4a9988d4f5498996aed205b8ff9.png" alt="在这里插入图片描述"><br>ctrl + F 打开代码搜索，我们搜索一下 type的值 “00”</p>
+<p>啊！ 一步到位, 这里我们 获取到了 三个 高度相关数据<br>好 type = 高度嫌疑犯<br><img src="https://img-blog.csdnimg.cn/6c9f624610a645708b9971a3cfd0ef3e.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/ba9346dfbfaa442e8d1f00d398577d2e.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/13e40107559a4a96bc87ba0d1b27a841.png" alt="在这里插入图片描述"><br>另一个 “usertype”:”1” 我也试了下，发现查出来的数据 好像 并没有多少相关性<br>那么 我们先暂定 这个 type 的值 应该就是 判定黄码 绿码 红码 的 关键值<br>之后，先找找有没有相关的 官方API 说明<br><img src="https://img-blog.csdnimg.cn/dee4cb8860874cbbb447d73de96c2b44.png" alt="在这里插入图片描述"><br>啊！  还真有个。。。 结合 上面我们自己解析的JS源码数据，我们可以定位 这个 type值 就是 判定信息的关键。</p>
+<p>既然是Ajax 异步加载 ， 那么我们需要通过 获取实时的 xhr 数据 来得到我们想要的type值。因此 这里我们需要得到动态数据接口，还是老位置xhr，我们打开 它的Headers数据<br><img src="https://img-blog.csdnimg.cn/85b2dd86e2b841898457143bf6f3a4fc.png" alt="在这里插入图片描述"><br>得到了 Request URL地址，那么我们只需要使用爬虫直接访问到这个URL 就能得到我们想要的 JSON数据了。但是 Wait！我们刚刚提到过 一个很关键的一点：健康码是动态变化的，每分钟 他都会重新刷新一遍，因此 又到解密环境了。<br><img src="https://img-blog.csdnimg.cn/adcbb04ba6b942568d76754f91377207.png" alt="在这里插入图片描述"><br>通过几次健康码刷新后的对比 可以得出  它的这个uid 的值 是变化的，那么我们只需要得到这个uid的值即可<br>得到这个uid 其实也很简单，我们可以通过访问健康码二维码的data指向网址就可以观察出了（这里可以回到上文二维码识别的 2&gt; pyzbar 二维码解析部分去看看）<br>url = ‘<a target="_blank" rel="noopener" href="https://s.sh.gov.cn/XXXXXXXXXXXXXXXXXXXXXXX%E2%80%99">https://s.sh.gov.cn/XXXXXXXXXXXXXXXXXXXXXXX’</a><br>通过观察 二维码所指向的网址 中 XXXXXXXXXXX 部分 和 uid = xxxxxxxxxxx 是相同的<br>那么我们只需要写个 算法 来分割字符串 取出其中的 xxxx 就行了</p>
+<h4 id="代码部分："><a href="#代码部分：" class="headerlink" title="代码部分："></a>代码部分：</h4><p>通过字符串切割 取出 uid 的值，构建 实时数据地址</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uid = url[<span class="built_in">str</span>(url).find(<span class="string">&quot;.cn/&quot;</span>) + <span class="number">4</span>:]</span><br><span class="line">tar_url = <span class="string">f&quot;https://suishenmafront1.sh.gov.cn/smzy/yqfkewm/ssm/ewmcheck?uid=<span class="subst">&#123;uid&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<p>访问目标地址 并print出来</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar_req = requests.get(tar_url, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">tar_req.encoding = <span class="string">&#x27;utf-8&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(tar_req.text)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/4744fa32cf31494f91c4a28e5d038c1d.png" alt="在这里插入图片描述"><br>ok 了！ 不过。。这个反斜杠。。。可真丑！</p>
+<p>那么 我们需要将这个 翻译成 人看的 （json转python）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar_json = tar_req.json()</span><br><span class="line"><span class="built_in">print</span>(tar_json)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/bf990b4ba4274a6e90273913758333ae.png" alt="在这里插入图片描述"></p>
+<p>好，到这里 我们终于达成了 我们的目的。不过这里有个需要说明的 我们所需要的type 被 usertype 一起混进了一个字符串里头了, 所以如果这里我们光光通过 tar_json = tar_req.json()[“data”][“type”]来取出 我们需要的元素是不可能的  ———-&gt; “TypeError” ，因此在这里我们就需要使用到 ast 模块 来将 字符串 转成 字典再取出type</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar_json = ast.literal_eval(tar_req.json()[<span class="string">&quot;data&quot;</span>])[<span class="string">&quot;type&quot;</span>]</span><br></pre></td></tr></table></figure>
+<p>到这里 我们终于得到了我们所想要得到的 健康码判定值了</p>
+<h1 id="4-源码"><a href="#4-源码" class="headerlink" title="4. 源码"></a>4. 源码</h1><p>源码开源到 我的 Github 上了 ： </p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/Panzer-Jack/Health-QRcode-Detect">https://github.com/Panzer-Jack/Health-QRcode-Detect</a></p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://www.panzer-jack.cn">Panzer_Jack</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.panzer-jack.cn/2022/06/26/%E5%9F%BA%E4%BA%8EOpenCV%E4%B8%8E%E7%88%AC%E8%99%AB%E8%AF%BB%E5%8F%96%E5%88%86%E6%9E%90%E5%AE%98%E6%96%B9%E7%9A%84%E5%8A%A8%E6%80%81%E6%8E%A5%E5%8F%A3%E6%9D%A5%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%81%A5%E5%BA%B7%E7%A0%81%E8%AF%86%E5%88%AB/">https://www.panzer-jack.cn/2022/06/26/%E5%9F%BA%E4%BA%8EOpenCV%E4%B8%8E%E7%88%AC%E8%99%AB%E8%AF%BB%E5%8F%96%E5%88%86%E6%9E%90%E5%AE%98%E6%96%B9%E7%9A%84%E5%8A%A8%E6%80%81%E6%8E%A5%E5%8F%A3%E6%9D%A5%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%81%A5%E5%BA%B7%E7%A0%81%E8%AF%86%E5%88%AB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.panzer-jack.cn" target="_blank">Panzer_Jack の 博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a></div><div class="post_share"><div class="social-share" data-image="https://pic.imgdb.cn/item/624bb3e3239250f7c5e11449.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/07/15/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E3%80%911-%E7%BA%BF%E6%80%A7%E7%BB%93%E6%9E%84-%E7%AC%94%E8%AE%B0/"><img class="prev-cover" src="https://pic.imgdb.cn/item/62724d5a09475431292acf20.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【数据结构与算法】1. 线性结构[笔记]</div></div></a></div><div class="next-post pull-right"><a href="/2022/06/01/OpenCV-%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B/"><img class="next-cover" src="https://pic.imgdb.cn/item/624bb3e3239250f7c5e11449.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">OpenCV-边缘检测</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/10/15/%E5%9F%BA%E4%BA%8E-go-cqhttp-%E5%BC%80%E5%8F%91%E7%9A%84-SSPU%E7%9A%84QQ%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%B0%8F%E5%8A%A9%E6%89%8B/" title="基于 go-cqhttp 开发的 SSPU的QQ机器人小助手"><img class="cover" src="https://pic1.imgdb.cn/item/634541a516f2c2beb15a911c.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-15</div><div class="title">基于 go-cqhttp 开发的 SSPU的QQ机器人小助手</div></div></a></div><div><a href="/2021/09/26/%E4%B8%8A%E6%B5%B7%E7%AC%AC%E4%BA%8C%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6-%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E7%88%AC%E8%99%ABV2-0/" title="上海第二工业大学-自动签到爬虫V2.0"><img class="cover" src="https://pic.imgdb.cn/item/624bb3e3239250f7c5e11449.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-26</div><div class="title">上海第二工业大学-自动签到爬虫V2.0</div></div></a></div><div><a href="/2021/09/24/%E4%B8%8A%E6%B5%B7%E7%AC%AC%E4%BA%8C%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6-%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E7%88%AC%E8%99%ABV1-5/" title="上海第二工业大学-自动签到爬虫 V1.5"><img class="cover" src="https://pic.imgdb.cn/item/624bb3e3239250f7c5e11449.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-24</div><div class="title">上海第二工业大学-自动签到爬虫 V1.5</div></div></a></div><div><a href="/2021/09/22/%E4%B8%8A%E6%B5%B7%E7%AC%AC%E4%BA%8C%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6-%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E7%88%AC%E8%99%AB/" title="上海第二工业大学-自动签到爬虫"><img class="cover" src="https://pic.imgdb.cn/item/624bb3e3239250f7c5e11449.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-22</div><div class="title">上海第二工业大学-自动签到爬虫</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://pic1.imgdb.cn/item/624bee62239250f7c5566d31.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Panzer_Jack</div><div class="author-info__description">--> Don't always complain about anything around you. Just do what you want to do <--</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">49</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Panzer-Jack"><i class="fab fa-github"></i><span>Jack here ~</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Panzer-Jack" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:danny123456123@126.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">仅是一个平凡的程序员用来记录生活和总结过去的小地方</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">1.</span> <span class="toc-text">1. 环境准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E4%BA%8C%E7%BB%B4%E7%A0%81%E8%AF%86%E5%88%AB-%E9%83%A8%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">2. 二维码识别 部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-gt-OpenCV-%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6%EF%BC%9A"><span class="toc-number">2.0.1.</span> <span class="toc-text">1&gt; OpenCV 代码框架：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-gt-pyzbar-%E4%BA%8C%E7%BB%B4%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%9A"><span class="toc-number">2.0.2.</span> <span class="toc-text">2&gt; pyzbar 二维码解析：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E7%88%AC%E8%99%AB-%E9%83%A8%E5%88%86"><span class="toc-number">3.</span> <span class="toc-text">3. 爬虫 部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-gt-%E8%AF%95%E6%89%8B1%EF%BC%9A"><span class="toc-number">3.0.1.</span> <span class="toc-text">1&gt; 试手1：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-gt-%E8%AF%95%E6%89%8B2%EF%BC%9A"><span class="toc-number">3.0.2.</span> <span class="toc-text">2&gt; 试手2：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%90%86%E8%AE%BA%E9%83%A8%E5%88%86%EF%BC%9A"><span class="toc-number">3.0.2.1.</span> <span class="toc-text">理论部分：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86%EF%BC%9A"><span class="toc-number">3.0.2.2.</span> <span class="toc-text">代码部分：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E6%BA%90%E7%A0%81"><span class="toc-number">4.</span> <span class="toc-text">4. 源码</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/11/18/%E6%99%BA%E8%83%BD%E9%98%B2%E7%96%AB%E9%97%A8%E7%A6%81%E7%B3%BB%E7%BB%9F/" title="智能门禁系统"><img src="https://pic.imgdb.cn/item/63770c5416f2c2beb107d59f.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="智能门禁系统"/></a><div class="content"><a class="title" href="/2022/11/18/%E6%99%BA%E8%83%BD%E9%98%B2%E7%96%AB%E9%97%A8%E7%A6%81%E7%B3%BB%E7%BB%9F/" title="智能门禁系统">智能门禁系统</a><time datetime="2022-11-18T03:13:14.000Z" title="发表于 2022-11-18 11:13:14">2022-11-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/20/%E5%85%B3%E4%BA%8E%E6%88%91%E7%9A%84%E5%A4%A7%E4%BA%8C%E5%8D%81%E6%9C%88%E7%89%A9%E8%AF%AD%E6%9E%9C%E7%84%B6%E6%9C%89%E9%97%AE%E9%A2%98%E8%BF%99%E6%A1%A3%E4%BA%8B/" title="关于我的大二十月物语果然有问题这档事"><img src="https://pic.imgdb.cn/item/624bb3e3239250f7c5e11449.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于我的大二十月物语果然有问题这档事"/></a><div class="content"><a class="title" href="/2022/10/20/%E5%85%B3%E4%BA%8E%E6%88%91%E7%9A%84%E5%A4%A7%E4%BA%8C%E5%8D%81%E6%9C%88%E7%89%A9%E8%AF%AD%E6%9E%9C%E7%84%B6%E6%9C%89%E9%97%AE%E9%A2%98%E8%BF%99%E6%A1%A3%E4%BA%8B/" title="关于我的大二十月物语果然有问题这档事">关于我的大二十月物语果然有问题这档事</a><time datetime="2022-10-20T07:27:32.000Z" title="发表于 2022-10-20 15:27:32">2022-10-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/20/%E5%85%B3%E4%BA%8Ewaline%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD%E5%9C%A8-%E5%9B%BD%E5%86%85%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-%EF%BC%88vercel-app%E5%9B%BD%E5%86%85%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%EF%BC%89/" title="关于waline评论功能在 国内无法使用的解决方案 （vercel.app国内无法使用问题）"><img src="https://pic.imgdb.cn/item/624bb3e3239250f7c5e11449.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于waline评论功能在 国内无法使用的解决方案 （vercel.app国内无法使用问题）"/></a><div class="content"><a class="title" href="/2022/10/20/%E5%85%B3%E4%BA%8Ewaline%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD%E5%9C%A8-%E5%9B%BD%E5%86%85%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-%EF%BC%88vercel-app%E5%9B%BD%E5%86%85%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%EF%BC%89/" title="关于waline评论功能在 国内无法使用的解决方案 （vercel.app国内无法使用问题）">关于waline评论功能在 国内无法使用的解决方案 （vercel.app国内无法使用问题）</a><time datetime="2022-10-19T16:06:43.000Z" title="发表于 2022-10-20 00:06:43">2022-10-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/18/%E5%85%B3%E4%BA%8E%E6%88%91%E7%9A%84%E5%A4%A7%E4%B8%80/" title="【一年总结】我的大一"><img src="https://pic1.imgdb.cn/item/624bee62239250f7c5566d31.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【一年总结】我的大一"/></a><div class="content"><a class="title" href="/2022/10/18/%E5%85%B3%E4%BA%8E%E6%88%91%E7%9A%84%E5%A4%A7%E4%B8%80/" title="【一年总结】我的大一">【一年总结】我的大一</a><time datetime="2022-10-18T11:17:01.000Z" title="发表于 2022-10-18 19:17:01">2022-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/18/2022-10-18%E5%B0%8F%E7%A0%B4%E7%AB%99%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/" title="2022-10-18小破站更新日志"><img src="https://pic.imgdb.cn/item/624bb3e3239250f7c5e11449.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2022-10-18小破站更新日志"/></a><div class="content"><a class="title" href="/2022/10/18/2022-10-18%E5%B0%8F%E7%A0%B4%E7%AB%99%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/" title="2022-10-18小破站更新日志">2022-10-18小破站更新日志</a><time datetime="2022-10-18T11:14:24.000Z" title="发表于 2022-10-18 19:14:24">2022-10-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By Panzer_Jack</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadWaline () {
+  function insertCSS () {
+    const link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.href = "https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css"
+    document.head.appendChild(link)
+  }
+
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://comment.panzer-jack.cn/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  if (typeof Waline === 'function') initWaline()
+  else {
+    insertCSS()
+    getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+  }
+}
+
+if ('Waline' === 'Waline' || !true) {
+  if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2d_models/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d_models/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/null"},"display":{"position":"left","width":80,"height":120},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body></html>

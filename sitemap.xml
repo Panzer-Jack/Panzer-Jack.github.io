@@ -614,15 +614,6 @@
   </url>
   
   <url>
-    <loc>https://www.panzer-jack.cn/tags/HTML-CSS/index.html</loc>
-    
-    <lastmod>2022-04-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.panzer-jack.cn/tags/experience/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
@@ -632,7 +623,7 @@
   </url>
   
   <url>
-    <loc>https://www.panzer-jack.cn/tags/Live2D-%E5%8E%9F%E7%94%BB/index.html</loc>
+    <loc>https://www.panzer-jack.cn/tags/Python/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
     
@@ -641,7 +632,16 @@
   </url>
   
   <url>
-    <loc>https://www.panzer-jack.cn/tags/Python/index.html</loc>
+    <loc>https://www.panzer-jack.cn/tags/HTML-CSS/index.html</loc>
+    
+    <lastmod>2022-04-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.panzer-jack.cn/tags/Live2D-%E5%8E%9F%E7%94%BB/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
     
@@ -930,14 +930,14 @@
   </url>
   
   <url>
-    <loc>https://www.panzer-jack.cn/categories/Java/</loc>
+    <loc>https://www.panzer-jack.cn/categories/%E8%80%83%E7%A0%94/</loc>
     <lastmod>2023-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.panzer-jack.cn/categories/%E8%80%83%E7%A0%94/</loc>
+    <loc>https://www.panzer-jack.cn/categories/Java/</loc>
     <lastmod>2023-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

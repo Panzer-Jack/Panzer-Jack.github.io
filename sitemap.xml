@@ -614,15 +614,6 @@
   </url>
   
   <url>
-    <loc>https://www.panzer-jack.cn/tags/Live2D-%E5%8E%9F%E7%94%BB/index.html</loc>
-    
-    <lastmod>2022-04-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.panzer-jack.cn/tags/HTML-CSS/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
@@ -641,7 +632,7 @@
   </url>
   
   <url>
-    <loc>https://www.panzer-jack.cn/tags/Python/index.html</loc>
+    <loc>https://www.panzer-jack.cn/tags/experience/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
     
@@ -650,7 +641,16 @@
   </url>
   
   <url>
-    <loc>https://www.panzer-jack.cn/tags/experience/index.html</loc>
+    <loc>https://www.panzer-jack.cn/tags/Live2D-%E5%8E%9F%E7%94%BB/index.html</loc>
+    
+    <lastmod>2022-04-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.panzer-jack.cn/tags/Python/index.html</loc>
     
     <lastmod>2022-04-04</lastmod>
     
@@ -734,13 +734,6 @@
   </url>
   
   <url>
-    <loc>https://www.panzer-jack.cn/tags/%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2023-10-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.panzer-jack.cn/tags/Linux/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -748,7 +741,7 @@
   </url>
   
   <url>
-    <loc>https://www.panzer-jack.cn/tags/Live2D-%E5%8E%9F%E7%94%BB/</loc>
+    <loc>https://www.panzer-jack.cn/tags/%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -756,6 +749,13 @@
   
   <url>
     <loc>https://www.panzer-jack.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/</loc>
+    <lastmod>2023-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.panzer-jack.cn/tags/Live2D-%E5%8E%9F%E7%94%BB/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -897,14 +897,14 @@
   </url>
   
   <url>
-    <loc>https://www.panzer-jack.cn/categories/%E7%BE%8E%E6%9C%AF/</loc>
+    <loc>https://www.panzer-jack.cn/categories/Python/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.panzer-jack.cn/categories/Python/</loc>
+    <loc>https://www.panzer-jack.cn/categories/%E7%BE%8E%E6%9C%AF/</loc>
     <lastmod>2023-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

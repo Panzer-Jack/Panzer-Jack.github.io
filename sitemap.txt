@@ -1,4 +1,4 @@
-https://www.panzer-jack.cn/2023/05/18/1/
+https://www.panzer-jack.cn/2023/10/10/1/
 https://www.panzer-jack.cn/2023/05/18/Cyber-AI-Waife/
 https://www.panzer-jack.cn/about/index.html
 https://www.panzer-jack.cn/2023/10/02/Reactive%E6%BA%90%E7%A0%81%E5%88%9D%E6%8E%A2/
@@ -81,8 +81,8 @@ https://www.panzer-jack.cn/
 https://www.panzer-jack.cn/tags/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/
 https://www.panzer-jack.cn/tags/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/
 https://www.panzer-jack.cn/tags/%E5%A4%87%E5%BF%98%E5%BD%95/
-https://www.panzer-jack.cn/tags/%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/
 https://www.panzer-jack.cn/tags/HTML-CSS/
+https://www.panzer-jack.cn/tags/%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/
 https://www.panzer-jack.cn/tags/Linux/
 https://www.panzer-jack.cn/tags/Live2D-%E5%8E%9F%E7%94%BB/
 https://www.panzer-jack.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/
@@ -112,5 +112,5 @@ https://www.panzer-jack.cn/categories/%E9%A1%B9%E7%9B%AE/
 https://www.panzer-jack.cn/categories/OpenCV/
 https://www.panzer-jack.cn/categories/C-C/
 https://www.panzer-jack.cn/categories/%E7%AE%97%E6%B3%95/
-https://www.panzer-jack.cn/categories/Java/
 https://www.panzer-jack.cn/categories/%E8%80%83%E7%A0%94/
+https://www.panzer-jack.cn/categories/Java/

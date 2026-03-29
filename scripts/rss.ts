@@ -1,35 +1,25 @@
 import type { FeedOptions, Item } from 'feed'
 import { dirname } from 'node:path'
-import fg from 'fast-glob'
 import { Feed } from 'feed'
 import fs from 'fs-extra'
-import matter from 'gray-matter'
-// @ts-expect-error missing types
-import MarkdownIt from 'markdown-it'
+import { siteIndexEntries } from '../src/data/siteIndex'
 
-const DOMAIN = 'https://blog.panzer-jack.cn'
+const DOMAIN = 'https://panzer-jack.cn'
 const AUTHOR = {
   name: 'Panzer-Jack',
   email: 'panzer_jack@panzer-jack.cn',
   link: DOMAIN,
 }
 
-const markdown = MarkdownIt({
-  html: true,
-  breaks: true,
-  linkify: true,
-})
-
 async function run() {
-  await buildBlogRSS()
+  await buildIndexRSS()
 }
 
-async function buildBlogRSS() {
-  const files = await fg('pages/posts/*.md')
-
-  const options = {
-    title: '老船长PZ_Jack の 索引页',
-    description: 'Panzer-Jack\'s Index Page',
+async function buildIndexRSS() {
+  const buildDate = new Date()
+  const options: FeedOptions = {
+    title: '老船长PZ_Jack の 航海索引',
+    description: 'Panzer-Jack 的网站索引订阅流',
     id: `${DOMAIN}/`,
     link: `${DOMAIN}/`,
     copyright: `CC BY-NC-SA 4.0 2026 © Panzer-Jack`,
@@ -38,43 +28,45 @@ async function buildBlogRSS() {
       atom: `${DOMAIN}/rss.atom`,
       rss: `${DOMAIN}/rss.xml`,
     },
+    updated: buildDate,
   }
 
-  const posts: any[] = (
-    await Promise.all(
-      files.filter(i => !i.includes('index'))
-        .map(async (i) => {
-          const raw = await fs.readFile(i, 'utf-8')
-          const { data, content } = matter(raw)
+  const items = siteIndexEntries
+    .filter(entry => !isFeedSelfLink(entry.url))
+    .map((entry, index) => {
+      const date = new Date(buildDate)
+      date.setSeconds(date.getSeconds() - index)
 
-          if (data.draft)
-            return
+      return {
+        title: entry.name,
+        id: entry.url,
+        link: entry.url,
+        date,
+        description: entry.description,
+        content: createItemContent(entry.name, entry.url, entry.description),
+        author: [AUTHOR],
+      } satisfies Item
+    })
 
-          const html = markdown.render(content)
-            .replace('src="/', `src="${DOMAIN}/`)
+  await writeFeed('rss', options, items)
+}
 
-          if (data.cover?.startsWith('/'))
-            data.cover = DOMAIN + data.cover
+function isFeedSelfLink(url: string) {
+  return url === `${DOMAIN}/rss.xml`
+    || url === `${DOMAIN}/rss.atom`
+    || url === `${DOMAIN}/rss.json`
+}
 
-          return {
-            ...data,
-            date: new Date(data.date),
-            content: html,
-            author: [AUTHOR],
-            link: DOMAIN + i.replace(/^pages(.+)\.md$/, '$1'),
-          }
-        }),
-    ))
-    .filter(Boolean)
-
-  posts.sort((a, b) => +new Date(b.date) - +new Date(a.date))
-
-  await writeFeed('rss', options, posts)
+function createItemContent(name: string, url: string, description: string) {
+  return [
+    `<p>${description}</p>`,
+    `<p><a href="${url}" target="_blank" rel="noopener noreferrer">前往 ${name}</a></p>`,
+  ].join('')
 }
 
 async function writeFeed(name: string, options: FeedOptions, items: Item[]) {
   options.author = AUTHOR
-  options.favicon = `${DOMAIN}/favicon.ico`
+  options.favicon = 'https://blog.panzer-jack.cn/avatar.png'
 
   const feed = new Feed(options)
 

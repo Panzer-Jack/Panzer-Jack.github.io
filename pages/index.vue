@@ -110,5 +110,16 @@ useHead({
         </div>
       </div>
     </section>
+
+    <footer class="mt-18px flex justify-center px-12px text-center text-11px text-sky-950/72">
+      <a
+        href="https://beian.miit.gov.cn/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline decoration-sky-700/28 underline-offset-4 transition-colors duration-200 hover:text-sky-700"
+      >
+        沪ICP备2023002941号-1
+      </a>
+    </footer>
   </main>
 </template>
